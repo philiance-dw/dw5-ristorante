@@ -1,0 +1,12 @@
+{
+    "name": "david/ristorante",
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "authors": [
+        {
+            "name": "ZayenJS",
+            "email": "davidnogueira.dev.pro@gmail.com"
+        }
+    ]
+}

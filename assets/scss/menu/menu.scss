@@ -1,0 +1,46 @@
+@import '../variables';
+
+main {
+  padding: 4rem;
+  background: lighten($secondary-color, 15%) url('../../images/brick-wall-dark.png');
+}
+
+.container {
+  @include flex(center, space-between);
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  color: #fff;
+
+  & > ul {
+    @include flex(stretch, space-between);
+    width: 100%;
+  }
+}
+
+h2 {
+  font-family: $ristorante-first-letter-ff;
+  font-size: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid $main-color;
+}
+
+li {
+  ul {
+    padding-top: 2rem;
+    @include flex(stretch, flex-start, column nowrap);
+    gap: 2rem;
+
+    a {
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+      transition: all 250ms ease;
+      border-bottom: 2px solid transparent;
+
+      &:hover {
+        border-bottom: 2px solid $main-color;
+      }
+    }
+  }
+}

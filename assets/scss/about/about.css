@@ -1,0 +1,60 @@
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 4rem;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 8rem;
+}
+
+.content iframe {
+  height: 50vh;
+}
+
+.content > * {
+  width: 40%;
+}
+
+.description {
+  font-family: "Roboto", arial, sans-serif;
+}
+
+.description h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.description h1::first-letter {
+  color: #ffd000;
+}
+
+.description p {
+  line-height: 1.75;
+  font-weight: 500;
+}
+/*# sourceMappingURL=about.css.map */

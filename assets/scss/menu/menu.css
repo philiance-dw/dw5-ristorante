@@ -1,0 +1,80 @@
+main {
+  padding: 4rem;
+  background: #575252 url("../../images/brick-wall-dark.png");
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  color: #fff;
+}
+
+.container > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #ffd000;
+}
+
+li ul {
+  padding-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 2rem;
+}
+
+li ul a {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
+  border-bottom: 2px solid transparent;
+}
+
+li ul a:hover {
+  border-bottom: 2px solid #ffd000;
+}
+/*# sourceMappingURL=menu.css.map */

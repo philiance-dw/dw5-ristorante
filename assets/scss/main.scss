@@ -1,0 +1,114 @@
+@import './reset';
+@import './variables';
+@import './fonts';
+
+body {
+  display: grid;
+  grid-template-rows: 6rem auto 8rem;
+}
+
+.main__header {
+  @include flex(center, space-between);
+  padding: 0 4rem;
+  background-color: $secondary-color;
+
+  ul {
+    @include flex(center, center);
+    gap: 1rem;
+
+    a {
+      color: $main-color;
+      transition: all 250ms ease;
+
+      &.active,
+      &:hover {
+        // color: white;
+        text-decoration: underline solid $main-color;
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+}
+
+.ristorante-logo {
+  @include flex(center, center);
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.4rem;
+  border-radius: 50%;
+  background-color: $main-color;
+  transition: all 250ms ease;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+
+  &::before {
+    content: '\e903';
+    color: white;
+    font-size: 1.25rem;
+  }
+}
+
+.brand--text {
+  font-family: $parisienne-ff;
+  letter-spacing: 1px;
+
+  &::first-letter {
+    color: $main-color;
+    font-family: $ristorante-first-letter-ff;
+  }
+}
+
+.main__footer {
+  background-color: $secondary-color;
+  padding: 1rem;
+  @include flex(center, center, column nowrap);
+  gap: 1rem;
+
+  h3 {
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+.social-icons {
+  @include flex(center, center);
+  gap: 2rem;
+  font-size: 1.25rem;
+
+  a {
+    transition: all 250ms ease;
+
+    &:hover {
+      &:before {
+        color: lighten($main-color, 20%);
+      }
+    }
+  }
+}
+
+[class^='ristorante-']:before,
+[class*=' ristorante-']:before {
+  font-family: 'ristorante' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ristorante-facebook:before {
+  content: '\e900';
+  color: $main-color;
+}
+.ristorante-twitter:before {
+  content: '\e901';
+  color: $main-color;
+}
+.ristorante-instagram:before {
+  content: '\e902';
+  color: $main-color;
+}
