@@ -4,26 +4,15 @@ $css = "menu";
 require_once __DIR__ . "/vendor/autoload.php";
 require_once __DIR__ . '/database/database.php';
 
-$statement = $pdo->prepare("SELECT * FROM categories");
+$statement = $pdo->prepare("SELECT c.name, d.id, d.name, d.description, d.size, d.price, d.created_at, d.updated_at FROM categories as c JOIN dishes as d ON c.id=d.category_id");
 $statement->execute();
-$categories = $statement->fetchAll();
-
-$dishesWithCategory = [];
-
-foreach ($categories as $category) {
-  $statement = $pdo->prepare("SELECT * FROM dishes WHERE category_id=:id");
-  $statement->bindValue(':id', $category['id']);
-  $statement->execute();
-  $dishes = $statement->fetchAll();
-
-  $dishesWithCategory[$category['name']] = $dishes;
-}
+$dishes = $statement->fetchAll(PDO::FETCH_GROUP);
 
 require_once './includes/header.php';?>
 
 <div class="container">
 	<ul>
-		<?php foreach ($dishesWithCategory as $category => $value): ?>
+		<?php foreach ($dishes as $category => $value): ?>
 		<li>
 			<h2><?=$category;?></h2>
 			<ul>
