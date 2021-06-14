@@ -101,19 +101,21 @@ payments: amount
 have, 0N users, 11 payments
 leave, 0N users, 11 reviews
 reviews: content, note
-categories: name
 
+categories: name
 own, 0N users, 11 orders
 users: first_name, last_name, phone, address, city, country, postal_code, email, password, is_admin
 cart, 0N users, 0N dishes
+
 like, 0N dishes, 11 reviews
 categorize, 11 products, 0N categories
-
 orders: status, method
 order_details, 0N dishes, 1N orders
+
 dishes: name, size, description, price
 ingredients, 1N products, 1N dishes
 products: name, quantity, price
+belongs_to, 11 dishes, 0N categories
 
 > Relations
 
@@ -146,7 +148,11 @@ products: name, quantity, price
   - 0N `dishes` <-> 1N `orders`
 
 - un `dishes` peut avoir au minimum 0 et au maximum N `reviews` - un `reviews` peut avoir au minimum 1 et au maximum 1 `dishes`
+
   - 0N `dishes` <-> 11 `reviews`
+
+- un `dishes` peut avoir au minimum 1 et au maximum 1 `categories` - un `categories` peut avoir au minimum 0 et au maximum N `dishes`
+  - 11 `dishes` <-> 0N `categories`
 
 ### MLD
 
@@ -174,20 +180,22 @@ order_details: dish_id(pk), order_id(pk), created_at, updated_at
 
 > mocodo
 
-payments: id, amount, user_id, created_at, updated_at
 have, 0N users, 11 payments
-leave, 0N users, 11 reviews
-reviews: id, content, note, user_id, dish_id, created_at, updated_at
-categories: id, name, created_at, updated_at
-
-own, 0N users, 11 orders
 users: id, first_name, last_name, phone, address, city, country, postal_code, email, password, is_admin, created_at, updated_at
-cart, 0N users, 0N dishes: user_id, dish_id, created_at, updated_at
-like, 0N dishes, 11 reviews
-categorize, 11 products, 0N categories
-
+own, 0N users, 11 orders
 orders: id, status, method, user_id, created_at, updated_at
+
+payments: id, amount, user_id, created_at, updated_at
+leave, 0N users, 11 reviews
+cart, 0N users, 0N dishes: user_id, dish_id, created_at, updated_at
 order_details, 0N dishes, 1N orders: dish_id, order_id, created_at, updated_at
-dishes: id, name, size, description, price, created_at, updated_at
-ingredients, 1N products, 1N dishes: product_id, dish_id, created_at, updated_at
+
+belongs_to, 11 dishes, 0N categories
+reviews: id, content, note, user_id, dish_id, created_at, updated_at
+like, 0N dishes, 11 reviews
+dishes: id, name, size, description, price, category_id, created_at, updated_at
+
+categories: id, name, created_at, updated_at
+categorize, 11 products, 0N categories
 products: id, name, quantity, price, category_id, created_at, updated_at
+ingredients, 1N products, 1N dishes: product_id, dish_id, created_at, updated_at

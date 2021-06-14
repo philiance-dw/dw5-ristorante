@@ -38,7 +38,7 @@ main {
     font-size: 4rem;
     opacity: 0;
     transform: scale(0);
-    animation: title-appear 1s 1.5s forwards ease;
+    animation: title-appear 1s 1s forwards ease;
   }
 
   p {
@@ -47,8 +47,9 @@ main {
     line-height: 2;
     max-width: 400px;
     text-align: center;
+    font-size: 1.25rem;
     font-weight: 600;
-    animation: title-appear 1s 1.5s forwards ease;
+    animation: title-appear 1s 1s forwards ease;
   }
 
   a {
@@ -61,7 +62,7 @@ main {
     font-weight: 600;
     transition: all 250ms ease;
     border: 1px solid transparent;
-    animation: title-appear 1s 1.5s forwards ease;
+    animation: title-appear 1s 1s forwards ease;
 
     &:hover {
       background-color: $secondary-color;

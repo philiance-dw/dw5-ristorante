@@ -48,6 +48,10 @@ h2 {
   border-bottom: 2px solid #ffd000;
 }
 
+h2::first-letter {
+  text-transform: uppercase;
+}
+
 li ul {
   padding-top: 2rem;
   display: -webkit-box;

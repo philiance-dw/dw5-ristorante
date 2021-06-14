@@ -1,46 +1,38 @@
 <?php
 $title = "Menu";
 $css = "menu";
+require_once __DIR__ . "/vendor/autoload.php";
+require_once __DIR__ . '/database/database.php';
+
+$statement = $pdo->prepare("SELECT * FROM categories");
+$statement->execute();
+$categories = $statement->fetchAll();
+
+$dishesWithCategory = [];
+
+foreach ($categories as $category) {
+  $statement = $pdo->prepare("SELECT * FROM dishes WHERE category_id=:id");
+  $statement->bindValue(':id', $category['id']);
+  $statement->execute();
+  $dishes = $statement->fetchAll();
+
+  $dishesWithCategory[$category['name']] = $dishes;
+}
+
 require_once './includes/header.php';?>
 
 <div class="container">
 	<ul>
+		<?php foreach ($dishesWithCategory as $category => $value): ?>
 		<li>
-			<h2>Entrées</h2>
+			<h2><?=$category;?></h2>
 			<ul>
-				<li><a href="#">AnitiPasti</a></li>
-				<li><a href="#">Salade</a></li>
-				<li><a href="#">Carpaccio</a></li>
-				<li><a href="#">Raviole</a></li>
+				<?php foreach ($value as $dish): ?>
+				<li><a href="#"><?=$dish['name'];?></a></li>
+				<?php endforeach;?>
 			</ul>
 		</li>
-		<li>
-			<h2>Plats</h2>
-			<ul>
-				<li><a href="#">Lasagnes</a></li>
-				<li><a href="#">Pizza</a></li>
-				<li><a href="#">Gratin</a></li>
-				<li><a href="#">Pasta</a></li>
-			</ul>
-		</li>
-		<li>
-			<h2>Desserts</h2>
-			<ul>
-				<li><a href="#">Cannoli</a></li>
-				<li><a href="#">Tiramisu</a></li>
-				<li><a href="#">Cheescake</a></li>
-				<li><a href="#">Panna Cotta</a></li>
-			</ul>
-		</li>
-		<li>
-			<h2>Boissons</h2>
-			<ul>
-				<li><a href="#">S.Pellegrino</a></li>
-				<li><a href="#">Cocktail</a></li>
-				<li><a href="#">Vin rouge</a></li>
-				<li><a href="#">Vin blanc</a></li>
-			</ul>
-		</li>
+		<?php endforeach;?>
 	</ul>
 </div>
 

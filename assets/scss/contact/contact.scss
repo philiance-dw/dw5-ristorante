@@ -1,0 +1,62 @@
+@import '../variables';
+
+main {
+  @include flex(center, center);
+}
+
+form {
+  @include flex(stretch, center, column nowrap);
+  gap: 1rem;
+  max-width: 600px;
+  width: 75%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 2rem 4rem;
+  color: $secondary-color;
+  box-shadow: 2px 2px 10px 5px transparentize($secondary-color, 0.5);
+
+  & > div {
+    @include flex(stretch, center, column nowrap);
+    border-radius: inherit;
+    color: inherit;
+  }
+
+  label {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    color: inherit;
+    font-family: $text-ff;
+    border: 3px solid;
+    border-radius: inherit;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    outline: none;
+  }
+
+  textarea {
+    resize: none;
+    height: 12rem;
+  }
+
+  button {
+    margin-top: 0.5rem;
+    background-color: $main-color;
+    padding: 1rem;
+    color: $secondary-color;
+    border: none;
+    border-radius: inherit;
+    box-shadow: 2px 2px 10px transparentize($secondary-color, 0.25);
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: all 250ms ease;
+
+    &:hover {
+      background-color: lighten($main-color, 10%);
+    }
+  }
+}

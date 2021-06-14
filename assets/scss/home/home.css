@@ -75,8 +75,8 @@ main {
   opacity: 0;
   -webkit-transform: scale(0);
           transform: scale(0);
-  -webkit-animation: title-appear 1s 1.5s forwards ease;
-          animation: title-appear 1s 1.5s forwards ease;
+  -webkit-animation: title-appear 1s 1s forwards ease;
+          animation: title-appear 1s 1s forwards ease;
 }
 
 .container p {
@@ -86,9 +86,10 @@ main {
   line-height: 2;
   max-width: 400px;
   text-align: center;
+  font-size: 1.25rem;
   font-weight: 600;
-  -webkit-animation: title-appear 1s 1.5s forwards ease;
-          animation: title-appear 1s 1.5s forwards ease;
+  -webkit-animation: title-appear 1s 1s forwards ease;
+          animation: title-appear 1s 1s forwards ease;
 }
 
 .container a {
@@ -103,8 +104,8 @@ main {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
   border: 1px solid transparent;
-  -webkit-animation: title-appear 1s 1.5s forwards ease;
-          animation: title-appear 1s 1.5s forwards ease;
+  -webkit-animation: title-appear 1s 1s forwards ease;
+          animation: title-appear 1s 1s forwards ease;
 }
 
 .container a:hover {

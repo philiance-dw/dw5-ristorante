@@ -24,6 +24,10 @@ h2 {
   font-size: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid $main-color;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 li {
