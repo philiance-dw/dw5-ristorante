@@ -1,0 +1,28 @@
+{% extends "layout/main.twig" %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/menu/menu.css">
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<ul>
+			{% for key,value in dishes %}
+				<li>
+					<h2>
+						{{key}}
+					</h2>
+					<ul>
+						{% for dish in value %}
+							<li>
+								<a href="#">{{dish.name}}
+								</a>
+							</li>
+
+						{% endfor %}
+					</ul>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

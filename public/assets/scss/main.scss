@@ -1,0 +1,189 @@
+@import './reset';
+@import './variables';
+@import './fonts';
+
+::selection {
+  background-color: $secondary-color;
+  color: $main-color;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 6rem auto 8rem;
+}
+
+.main__header {
+  @include flex(center, space-between);
+  padding: 0 4rem;
+  background-color: $secondary-color;
+
+  ul {
+    @include flex(center, center);
+    gap: 1rem;
+
+    a {
+      color: $main-color;
+      transition: all 250ms ease;
+
+      &.active,
+      &:hover {
+        // color: white;
+        text-decoration: underline solid $main-color;
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+}
+
+.ristorante-logo {
+  @include flex(center, center);
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.4rem;
+  border-radius: 50%;
+  background-color: $main-color;
+  transition: all 250ms ease;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+
+  &::before {
+    content: '\e903';
+    color: white;
+    font-size: 1.25rem;
+  }
+}
+
+.brand--text {
+  font-family: $parisienne-ff;
+  letter-spacing: 1px;
+
+  &::first-letter {
+    color: $main-color;
+    font-family: $ristorante-first-letter-ff;
+  }
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  color: inherit;
+  font-family: $text-ff;
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  height: 12rem;
+}
+
+button {
+  margin-top: 0.5rem;
+  background-color: $main-color;
+  padding: 1rem;
+  color: $secondary-color;
+  border: none;
+  border-radius: inherit;
+  box-shadow: 2px 2px 10px transparentize($secondary-color, 0.25);
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: all 250ms ease;
+
+  &:hover {
+    background-color: lighten($main-color, 10%);
+  }
+}
+
+a {
+  transition: all 250ms ease;
+}
+
+p.error {
+  padding: 0.5rem;
+  border: 1px solid rgb(121, 0, 0);
+  background-color: rgba(153, 0, 0, 0.25);
+  color: rgb(131, 12, 12);
+  border-radius: 5px;
+}
+
+.main__footer {
+  background-color: $secondary-color;
+  padding: 1rem;
+  @include flex(center, center, column nowrap);
+  gap: 1rem;
+
+  h3 {
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+.social-icons {
+  @include flex(center, center);
+  gap: 2rem;
+  font-size: 1.25rem;
+
+  a {
+    transition: all 250ms ease;
+
+    &:hover {
+      &:before {
+        color: lighten($main-color, 20%);
+      }
+    }
+  }
+}
+
+[class^='ristorante-']:before,
+[class*=' ristorante-']:before {
+  font-family: 'ristorante' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ristorante-facebook:before {
+  content: '\e900';
+  color: $main-color;
+}
+.ristorante-twitter:before {
+  content: '\e901';
+  color: $main-color;
+}
+.ristorante-instagram:before {
+  content: '\e902';
+  color: $main-color;
+}
+
+.page404 {
+  @include flex(center, center);
+  background: $secondary-color url('/public/assets/images/main-bg.jpg');
+  height: 100%;
+  background-size: cover;
+  background-position: top center;
+
+  h1 {
+    font-family: $parisienne-ff;
+    letter-spacing: 1px;
+    font-size: 8rem;
+    color: #fff;
+
+    span {
+      color: $main-color;
+      font-family: $ristorante-first-letter-ff;
+    }
+  }
+}

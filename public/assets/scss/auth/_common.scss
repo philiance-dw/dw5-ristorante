@@ -1,0 +1,44 @@
+@import '../variables';
+
+.container {
+  @include flex(center, center);
+  background: $secondary-color url('/public/assets/images/main-bg.jpg');
+  height: 100%;
+  background-size: cover;
+  background-position: top center;
+
+  form {
+    @include flex(center, center, column nowrap);
+    gap: 2rem;
+    padding: 4rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    max-width: 900px;
+    border-radius: 10px;
+
+    & > div {
+      @include flex(stretch, center, column nowrap);
+      gap: 1rem;
+    }
+
+    .input__container {
+      @include flex(stretch, center, column nowrap);
+      gap: 0.75rem;
+
+      input {
+        padding: 0.75rem;
+      }
+    }
+  }
+
+  a {
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      color: $secondary-color;
+      border-color: $secondary-color;
+    }
+  }
+}

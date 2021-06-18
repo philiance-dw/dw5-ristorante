@@ -1,0 +1,19 @@
+{% extends "layout/main.twig" %}
+
+{% import "macros/forms.twig" as form %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/auth/login/login.css">
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<form method="POST">
+			{{form.input('email', data.email, 'Email', 'email', 'email', errors.email, 'email')}}
+			{{form.input('password', data.password, 'Mot de passe', 'password', 'password', errors.password, 'password')}}
+			<button>Se connecter</button>
+			<a href="/inscription">Pas de compte ?</a>
+		</form>
+	</div>
+
+{% endblock %}

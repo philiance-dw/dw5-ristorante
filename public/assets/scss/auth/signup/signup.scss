@@ -1,0 +1,12 @@
+@import '../common';
+
+form > div.input__group {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4rem;
+
+  & > div {
+    @include flex(stretch, center, column nowrap);
+    gap: 1rem;
+  }
+}

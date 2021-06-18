@@ -1,0 +1,40 @@
+{% extends "layout/main.twig" %}
+
+{% import "macros/forms.twig" as form %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/auth/signup/signup.css">
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<form method="POST">
+			{% if errors.passwordMatch %}
+				<p class="error">{{errors.passwordMatch}}</p>
+			{% endif %}
+			<div class="input__group">
+				{{form.input('firstName', data.firstName, 'Prénom', 'firstName', '', errors.firstName)}}
+				{{form.input('lastName', data.lastName, 'Nom', 'lastName', '', errors.lastName)}}
+			</div>
+			<div class="input__group">
+				{{form.input('email', data.email, 'Email', 'email', '', errors.email, 'email')}}
+				{{form.input('password', data.password, 'Mot de passe', 'password', '', errors.password, 'password')}}
+			</div>
+			<div class="input__group">
+				{{form.input('confirmPassword', data.confirmPassword, 'Confirmation mot de passe', 'confirmPassword', '', errors.confirmPassword, 'password')}}
+				{{form.input('address', data.address, 'Adresse', 'address', '', errors.address)}}
+			</div>
+			<div class="input__group">
+				{{form.input('city', data.city, 'Ville', 'city', '', errors.city)}}
+				{{form.input('country', data.country, 'Pays', 'country', '', errors.country)}}
+			</div>
+			<div class="input__group">
+				{{form.input('postalCode', data.postalCode, 'Code postal', 'postalCode', '', errors.postalCode)}}
+				{{form.input('phone', data.phone, 'Numéro de téléphone', 'phone', '', errors.phone, 'tel')}}
+			</div>
+
+			<button>S'inscrire</button>
+		</form>
+	</div>
+
+{% endblock %}

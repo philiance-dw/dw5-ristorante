@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/public/assets/scss/main.css"> {% block head %}{% endblock %}
+
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Dancing+Script:wght@600&family=Parisienne&family=Roboto&display=swap" rel="stylesheet">
+		<title>Ristorante |
+			{{ title }}
+		</title>
+	</head>
+	<body>
+		<header class="main__header">
+			<a href='/' class="ristorante-logo"></a>
+			<nav>
+				<ul>
+					<li><a href="/"class="{{pageName == 'home' ? 'active' : ''}}">Accueil</a></li>
+					<li><a href="/about"class="{{pageName == 'about' ? 'active' : ''}}">A propos</a></li>
+					<li><a href="/menu"class="{{pageName == 'menu' ? 'active' : ''}}">Menu</a></li>
+					<li><a href="/contact"class="{{pageName == 'contact' ? 'active' : ''}}">Contact</a></li>
+					<li><a href="/connexion"class="{{pageName == 'connexion' ? 'active' : ''}}">Connexion</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			{% block main %}{% endblock %}
+		</main>
+		<footer class="main__footer">
+			<h3 class="brand--text">Ristorante</h3>
+			<ul class="social-icons">
+				<li>
+					<a class="ristorante-facebook" href="#"></a>
+				</li>
+				<li>
+					<a class="ristorante-instagram" href="#"></a>
+				</li>
+				<li>
+					<a class="ristorante-twitter" href="#"></a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

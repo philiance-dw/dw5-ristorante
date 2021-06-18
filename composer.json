@@ -1,12 +1,19 @@
 {
-    "name": "david/ristorante",
-    "require": {
-        "vlucas/phpdotenv": "^5.3"
-    },
-    "authors": [
-        {
-            "name": "ZayenJS",
-            "email": "davidnogueira.dev.pro@gmail.com"
-        }
-    ]
+  "name": "david/ristorante",
+  "require": {
+    "vlucas/phpdotenv": "^5.3",
+    "altorouter/altorouter": "^2.0",
+    "twig/twig": "^3.3"
+  },
+  "authors": [
+    {
+      "name": "ZayenJS",
+      "email": "davidnogueira.dev.pro@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
+    }
+  }
 }

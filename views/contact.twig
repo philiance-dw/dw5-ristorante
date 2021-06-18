@@ -1,0 +1,24 @@
+{% extends "layout/main.twig" %}
+{% import "macros/forms.twig" as form %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/contact/contact.css">
+{% endblock %}
+
+{% block main %}
+	<form
+		method="POST">
+		{# <div>
+				<label for="firstName">Prénom</label>
+				<input id="firstName" name="firstName" type="text" placeholder="Votre prénom..." value="{{data.firstName}}">
+			</div>
+			{% if errors.firstName %}
+				<p class="error">{{errors.firstName}}</p>
+			{% endif %} #}
+		{{form.input('firstName', data.firstName, 'Prénom', 'firstName', 'Votre prénom...', errors.firstName)}}
+		{{form.input('lastName', data.lastName, 'Nom', 'lastName', 'Votre nom...', errors.lastName)}}
+		{{form.input('email', data.email, 'Email', 'email', 'Votre email...', errors.email, 'email')}}
+		{{form.textarea('message', data.message, 'Message', 'message', 'Votre message...', errors.message)}}
+		<button>Envoyer</button>
+	</form>
+{% endblock %}
