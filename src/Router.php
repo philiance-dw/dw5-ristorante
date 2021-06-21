@@ -6,23 +6,29 @@ use AltoRouter;
 use App\Controllers\MainController;
 
 class Router extends AltoRouter {
-
+  private $path;
   private $router;
 
   public function __construct() {
     $this->router = new AltoRouter();
   }
 
+  public function setPath(string $path) {
+    $this->path = $path;
+    return $this;
+  }
+
   // on vient utiliser la méthode map d'Altorouter pour faire une méthode get personnalisée
   public function get($route, $target) {
-    $this->router->map('GET', $route, $target);
+    $this->router->map('GET', $this->path . $route, $target);
+    $this->router->map('GET', $this->path . $route . '/', $target);
     // on retourne this pour pouvoir executer d'autres méthodes à l'affilé -> chaining
     return $this;
   }
 
   // on vient utiliser la méthode map d'Altorouter pour faire une méthode post personnalisée
   public function post($route, $target) {
-    $this->router->map('POST', $route, $target);
+    $this->router->map('POST', $this->path . $route, $target);
     return $this;
   }
 

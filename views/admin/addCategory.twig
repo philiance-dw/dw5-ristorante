@@ -1,0 +1,10 @@
+{% extends "layout/admin.twig" %}
+
+{% import "macros/forms.twig" as form %}
+
+{% block main %}
+	<form method="POST">
+		{{form.input('name', data.name, 'Nom', 'categoryName', 'Le nom de la catégorie', errors.name, 'text', true)}}
+		<button class="btn">Ajouter</button>
+	</form>
+{% endblock %}

@@ -16,7 +16,12 @@ abstract class Controller {
       'cache' => false,
     ]);
 
-    $uri = explode('/', $_SERVER['REQUEST_URI'])[1];
+    $baseUri = $_SERVER['REQUEST_URI'];
+
+    $uri = explode('/', $baseUri);
+
+    $uri = array_pop($uri);
+
     $pageName = empty($uri) ? 'home' : $uri;
     $twig->addGlobal('pageName', $pageName);
     $twig->addGlobal('user', $_SESSION['user'] ?? null);

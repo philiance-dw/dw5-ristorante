@@ -24,7 +24,7 @@ class AuthController extends Controller {
 
       if ($user && password_verify($password, $user->getPassword())) {
         $_SESSION['user'] = $user;
-        Router::redirect('/');
+        Router::redirect($user->getIsAdmin() ? '/admin/accueil' : '/');
         return;
       }
 

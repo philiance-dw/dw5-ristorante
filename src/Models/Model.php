@@ -15,9 +15,9 @@ abstract class Model {
 
   /** @var int */
   protected $id;
-  /** @var DateTime */
+  /** @var string */
   protected $created_at;
-  /** @var DateTime */
+  /** @var string */
   protected $updated_at;
 
   public function __construct() {
@@ -163,7 +163,7 @@ abstract class Model {
     return $this;
   }
 
-  public function getCreatedAt(): ?DateTime {
+  public function getCreatedAt(): ?string {
     return $this->created_at;
   }
   public function setCreatedAt(DateTime $created_at): self {
@@ -171,7 +171,7 @@ abstract class Model {
     return $this;
   }
 
-  public function getUpdatedAt(): ?DateTime {
+  public function getUpdatedAt(): ?string {
     return $this->updated_at;
   }
   public function setUpdatedAt(DateTime $updated_at): self {

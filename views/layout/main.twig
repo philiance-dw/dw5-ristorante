@@ -16,7 +16,7 @@
 	<body>
 		<header class="main__header">
 			<a href='/' class="ristorante-logo"></a>
-			<nav>
+			<nav class="nav">
 				<ul>
 					<li>
 						<a href="/" class="{{pageName == 'home' ? 'active' : ''}}">Accueil</a>
@@ -36,11 +36,9 @@
 							<a href="/deconnexion">Déconnexion</a>
 						</li>
 					{% else %}
-
 						<li>
 							<a href="/connexion" class="{{pageName == 'connexion' ? 'active' : ''}}">Connexion</a>
 						</li>
-
 					{% endif %}
 
 				</ul>

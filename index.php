@@ -9,7 +9,7 @@ use App\Router;
 
 $router = new Router();
 
-// on définit nos routes
+// on définit nos routes publiques
 $router->get('/', 'MainController#getHome')
   ->get('/about', 'MainController#getAbout')
   ->get('/menu', 'MainController#getMenu')
@@ -21,6 +21,15 @@ $router->get('/', 'MainController#getHome')
 $router->post('/contact', 'MainController#postContact')
   ->post('/connexion', 'AuthController#postConnection')
   ->post('/inscription', 'AuthController#postSignup');
+
+// on définit nos routes admin
+$router->setPath("/admin")
+  ->get('', 'AdminController#redirectHome')
+  ->get('/accueil', 'AdminController#getHome')
+  ->get('/categories', 'CategoryController#getCategories')
+  ->get('/categories/ajouter', 'CategoryController#getAddCategory');
+
+$router->post('/categories/ajouter', 'CategoryController#postAddCategory');
 
 // on lance le router
 $router->run();

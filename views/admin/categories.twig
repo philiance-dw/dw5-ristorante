@@ -1,0 +1,36 @@
+{% extends "layout/admin.twig" %}
+
+
+{% block main %}
+	<div class="admin__categories">
+		<table>
+			<caption>Catégories</caption>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>nom</th>
+					<th>date de création</th>
+					<th>date de modification</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categories %}
+					<tr>
+						<td>{{category.getId()}}</td>
+						<td>{{category.getName()}}</td>
+						<td>{{category.getCreatedAt()}}</td>
+						<td>{{category.getUpdatedAt() ? category.getUpdatedAt : '-'}}</td>
+						<td>
+							<a href="#">modifier</a>
+							<a href="#">supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="btn__container">
+			<a class="btn" href="/admin/categories/ajouter">Ajouter une catégorie</a>
+		</div>
+	</div>
+{% endblock %}

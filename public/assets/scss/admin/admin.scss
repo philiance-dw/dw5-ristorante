@@ -1,0 +1,80 @@
+@import '../main.scss';
+@import '../placeholders';
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 10rem auto;
+}
+
+.admin__header {
+  height: 10rem;
+  display: grid;
+  grid-template-columns: 15rem auto;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: $secondary-color;
+  background-image: url('https://www.transparenttextures.com/patterns/food.png');
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
+  & > div {
+    @include flex(center, center, column nowrap);
+    height: 100%;
+    gap: 1rem;
+  }
+
+  .brand--text {
+    font-size: 4rem;
+    color: #fff;
+  }
+
+  ul {
+    justify-content: flex-end;
+  }
+}
+
+.admin__main {
+  padding: 4rem;
+}
+
+.admin__categories {
+  height: 100%;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+
+  .btn__container {
+    width: fit-content;
+    margin: 2rem 0 2rem auto;
+  }
+}
+
+table {
+  caption {
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: $secondary-color;
+    color: $main-color;
+  }
+
+  width: 100%;
+  text-align: left;
+
+  tr {
+    border-bottom: 2px solid transparentize($secondary-color, 0.75);
+  }
+
+  th {
+    background-color: transparentize($main-color, 0.75);
+    color: $secondary-color;
+  }
+
+  th,
+  td {
+    padding: 1rem;
+  }
+}
+
+.btn {
+  @extend %btn;
+}

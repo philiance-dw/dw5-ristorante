@@ -217,40 +217,6 @@ textarea {
   height: 12rem;
 }
 
-button,
-.btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 0.5rem;
-  background-color: #ffd000;
-  padding: 1rem;
-  color: #302d2d;
-  border: none;
-  border-radius: inherit;
-  -webkit-box-shadow: 2px 2px 10px rgba(48, 45, 45, 0.75);
-          box-shadow: 2px 2px 10px rgba(48, 45, 45, 0.75);
-  font-size: 1.25rem;
-  font-weight: 600;
-  -webkit-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-
-button:hover,
-.btn:hover {
-  background-color: #ffd933;
-}
-
 a {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
@@ -373,4 +339,134 @@ p.error {
   color: #ffd000;
   font-family: "Dancing Script", cursive;
 }
-/*# sourceMappingURL=main.css.map */
+
+button,
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 0.5rem;
+  background-color: #ffd000;
+  padding: 1rem;
+  color: #302d2d;
+  border: none;
+  border-radius: inherit;
+  -webkit-box-shadow: 2px 2px 10px rgba(48, 45, 45, 0.75);
+          box-shadow: 2px 2px 10px rgba(48, 45, 45, 0.75);
+  font-size: 1.25rem;
+  font-weight: 600;
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #ffd933;
+}
+
+.container {
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 10rem auto;
+      grid-template-rows: 10rem auto;
+}
+
+.admin__header {
+  height: 10rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 15rem auto;
+      grid-template-columns: 15rem auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 2rem;
+  background-color: #302d2d;
+  background-image: url("https://www.transparenttextures.com/patterns/food.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+.admin__header > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  gap: 1rem;
+}
+
+.admin__header .brand--text {
+  font-size: 4rem;
+  color: #fff;
+}
+
+.admin__header ul {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.admin__main {
+  padding: 4rem;
+}
+
+.admin__categories {
+  height: 100%;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.admin__categories .btn__container {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 2rem 0 2rem auto;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+}
+
+table caption {
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: #302d2d;
+  color: #ffd000;
+}
+
+table tr {
+  border-bottom: 2px solid rgba(48, 45, 45, 0.25);
+}
+
+table th {
+  background-color: rgba(255, 208, 0, 0.25);
+  color: #302d2d;
+}
+
+table th,
+table td {
+  padding: 1rem;
+}
+/*# sourceMappingURL=admin.css.map */

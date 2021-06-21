@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="/public/assets/scss/admin/admin.css"> {% block head %}{% endblock %}
+
+		<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Dancing+Script:wght@600&family=Parisienne&family=Roboto&display=swap" rel="stylesheet">
+
+
+		<title>Ristorant |
+			{{title}}</title>
+	</head>
+	<body>
+		<div class="container">
+			<header class="admin__header">
+
+				<div>
+					<a href="/" class="brand--text">Ristorante</a>
+				</div>
+				<nav class="nav">
+					<ul>
+						<li><a href="/admin/accueil"class="{{ pageName == 'accueil' ? 'active' : '' }}">Accueil</a></li>
+						<li><a href="/admin/categories"class="{{ pageName == 'categories' ? 'active' : '' }}">Catégories</a></li>
+					</ul>
+				</nav>
+			</header>
+			<main class="admin__main"> {% block main %}{% endblock %}
+				</main>
+			</div>
+		</body>
+	</html>
+</body></html></body></html>

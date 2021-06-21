@@ -9,13 +9,13 @@
 	<form
 		method="POST">
 		{# <div>
-				<label for="firstName">Prénom</label>
-				<input id="firstName" name="firstName" type="text" placeholder="Votre prénom..." value="{{data.firstName}}">
-			</div>
-			{% if errors.firstName %}
-				<p class="error">{{errors.firstName}}</p>
-			{% endif %} #}
-		{{form.input('firstName', data.firstName, 'Prénom', 'firstName', 'Votre prénom...', errors.firstName)}}
+						<label for="firstName">Prénom</label>
+						<input id="firstName" name="firstName" type="text" placeholder="Votre prénom..." value="{{data.firstName}}">
+					</div>
+					{% if errors.firstName %}
+						<p class="error">{{errors.firstName}}</p>
+					{% endif %} #}
+		{{form.input('firstName', data.firstName, 'Prénom', 'firstName', 'Votre prénom...', errors.firstName, 'text', true)}}
 		{{form.input('lastName', data.lastName, 'Nom', 'lastName', 'Votre nom...', errors.lastName)}}
 		{{form.input('email', data.email, 'Email', 'email', 'Votre email...', errors.email, 'email')}}
 		{{form.textarea('message', data.message, 'Message', 'message', 'Votre message...', errors.message)}}

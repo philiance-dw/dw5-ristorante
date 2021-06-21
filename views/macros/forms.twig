@@ -1,8 +1,8 @@
-{% macro input(name, value, label, id, placeholder, errorMessage, type = 'text') %}
+{% macro input(name, value, label, id, placeholder, errorMessage, type = 'text', autofocus = false) %}
 	<div>
 		<div class="input__container">
 			<label for="{{id}}">{{label}}</label>
-			<input id="{{id}}" name="{{name}}" type="{{type ?? 'text'}}" placeholder="{{placeholder}}" value="{{value}}">
+			<input {{autofocus ? 'autofocus' : ''}} id="{{id}}" name="{{name}}" type="{{type ?? 'text'}}" placeholder="{{placeholder}}" value="{{value}}">
 		</div>
 		{% if errorMessage %}
 			<p class="error">{{errorMessage}}</p>

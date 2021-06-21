@@ -1,0 +1,17 @@
+%btn {
+  @include flex(center, center);
+  margin-top: 0.5rem;
+  background-color: $main-color;
+  padding: 1rem;
+  color: $secondary-color;
+  border: none;
+  border-radius: inherit;
+  box-shadow: 2px 2px 10px transparentize($secondary-color, 0.25);
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: all 250ms ease;
+
+  &:hover {
+    background-color: lighten($main-color, 10%);
+  }
+}
