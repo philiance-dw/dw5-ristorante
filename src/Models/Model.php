@@ -132,8 +132,40 @@ abstract class Model {
   }
 
   public function update(array $entityArray) {
+    $tableName = $entityArray['table'];
+    $id = $entityArray['id'];
 
-    # code...
+    // ici j'enleve les clés dont je n'ai pas besoin
+    unset($entityArray['id']);
+    unset($entityArray['table']);
+    unset($entityArray['created_at']);
+    unset($entityArray['updated_at']);
+
+    $keys = array_keys($entityArray); // clés de l'objet
+    $params = array_map(fn($el) => ":$el", $keys); // clés de l'objet préfixés avec :
+    $values = array_values($entityArray); // valeurs de l'objet
+
+    $params = array_combine($params, $values); // tableau de parametres à envoyé à la méthode execute
+
+    $setString = [];
+
+    foreach ($keys as $value) {
+      $setString[] = "$value=:$value";
+    }
+
+    $setString = implode(', ', $setString);
+
+    $pdo = Database::getConnection();
+
+    $statement = $pdo->prepare("UPDATE $tableName SET $setString, updated_at=NOW() WHERE id=:id");
+    $params[':id'] = $id;
+
+    $statement->execute($params);
+
+    $statement = $pdo->prepare("SELECT * FROM $tableName WHERE id=:id");
+    $statement->execute([':id' => $id]);
+
+    return $statement->fetchAll(PDO::FETCH_CLASS, $this::class)[0];
   }
 
   public static function deleteOne(int $id): bool {
@@ -158,23 +190,23 @@ abstract class Model {
   public function getId(): ?int {
     return $this->id;
   }
-  public function setId(int $id): self {
+  public function setId(int $id) {
     $this->id = $id;
     return $this;
   }
 
-  public function getCreatedAt(): ?string {
+  public function getCreatedAt() {
     return $this->created_at;
   }
-  public function setCreatedAt(DateTime $created_at): self {
+  public function setCreatedAt(DateTime $created_at) {
     $this->created_at = $created_at;
     return $this;
   }
 
-  public function getUpdatedAt(): ?string {
+  public function getUpdatedAt() {
     return $this->updated_at;
   }
-  public function setUpdatedAt(DateTime $updated_at): self {
+  public function setUpdatedAt(DateTime $updated_at) {
     $this->updated_at = $updated_at;
     return $this;
   }

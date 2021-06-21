@@ -22,8 +22,8 @@
 						<td>{{category.getCreatedAt()}}</td>
 						<td>{{category.getUpdatedAt() ? category.getUpdatedAt : '-'}}</td>
 						<td>
-							<a href="#">modifier</a>
-							<a href="#">supprimer</a>
+							<a href="/admin/categories/modifier/{{category.getId()}}">modifier</a>
+							<a href="/admin/categories/supprimer/{{category.getId()}}">supprimer</a>
 						</td>
 					</tr>
 				{% endfor %}

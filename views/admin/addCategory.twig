@@ -5,6 +5,6 @@
 {% block main %}
 	<form method="POST">
 		{{form.input('name', data.name, 'Nom', 'categoryName', 'Le nom de la catégorie', errors.name, 'text', true)}}
-		<button class="btn">Ajouter</button>
+		<button class="btn">{{editMode ? 'Modifier': 'Ajouter'}}</button>
 	</form>
 {% endblock %}

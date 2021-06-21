@@ -27,9 +27,12 @@ $router->setPath("/admin")
   ->get('', 'AdminController#redirectHome')
   ->get('/accueil', 'AdminController#getHome')
   ->get('/categories', 'CategoryController#getCategories')
-  ->get('/categories/ajouter', 'CategoryController#getAddCategory');
+  ->get('/categories/ajouter', 'CategoryController#getAddCategory')
+  ->get('/categories/modifier/[i:id]', 'CategoryController#getEditCategory')
+  ->get('/categories/supprimer/[i:id]', 'CategoryController#deleteCategory');
 
-$router->post('/categories/ajouter', 'CategoryController#postAddCategory');
+$router->post('/categories/ajouter', 'CategoryController#postAddCategory')
+  ->post('/categories/modifier/[i:id]', 'CategoryController#postEditCategory');
 
 // on lance le router
 $router->run();
