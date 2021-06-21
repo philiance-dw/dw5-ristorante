@@ -9,7 +9,7 @@ use ReflectionClass;
 use ReflectionProperty;
 
 abstract class Model {
-  protected static $tableName;
+  // protected static $tableName;
   protected $table;
   protected $pdo;
 
@@ -22,6 +22,7 @@ abstract class Model {
 
   public function __construct() {
     $this->pdo = Database::getConnection();
+
   }
 
   private function getClassProperties() {
@@ -68,15 +69,30 @@ abstract class Model {
     return $statement->fetchAll(PDO::FETCH_CLASS, $obj::class);
   }
 
-  public static function findOne(int $id): false | self{
+  public static function findOne(array $params) {
     $class = get_called_class();
     $obj = new $class();
     $table = $obj->getTable();
     $pdo = Database::getConnection();
 
-    $statement = $pdo->prepare("SELECT * FROM $table WHERE id=:id;");
-    $statement->execute(['id' => htmlentities($id)]);
-    return $statement->fetchAll(PDO::FETCH_CLASS, $obj::class)[0];
+    $id = $params['id'] ?? null;
+    $email = $params['email'] ?? null;
+
+    if ($id) {
+      $statement = $pdo->prepare("SELECT * FROM $table WHERE id=:id;");
+      $statement->execute([':id' => htmlentities($id)]);
+    } elseif ($email) {
+      $statement = $pdo->prepare("SELECT * FROM $table WHERE email=:email;");
+      $statement->execute([':email' => htmlentities($email)]);
+    }
+
+    $entity = $statement->fetchAll(PDO::FETCH_CLASS, $obj::class);
+
+    if (!empty($entity)) {
+      return $entity[0];
+    }
+
+    return false;
   }
 
   public function save() {
@@ -106,6 +122,7 @@ abstract class Model {
     $pdo = Database::getConnection();
 
     $statement = $pdo->prepare("INSERT INTO $tableName ($keys) VALUES ($params);");
+
     $statement->execute($paramValues);
 
     $lastInsertId = $pdo->lastInsertId();
@@ -119,7 +136,7 @@ abstract class Model {
     # code...
   }
 
-  public static function destroy(int $id): false | self{
+  public static function deleteOne(int $id): bool {
     $class = get_called_class();
     $obj = new $class();
     $table = $obj->getTable();
@@ -127,12 +144,16 @@ abstract class Model {
 
     $statement = $pdo->prepare("DELETE FROM $table WHERE id=:id;");
     $statement->execute(['id' => htmlentities($id)]);
-    return $statement->fetchAll(PDO::FETCH_CLASS, $obj::class)[0];
+    return (bool) $statement->fetchAll(PDO::FETCH_CLASS, $obj::class);
   }
 
   public function getTable(): string {
     return $this->table;
   }
+
+  // public function getTableName(): string {
+  //   return $this->table;
+  // }
 
   public function getId(): ?int {
     return $this->id;

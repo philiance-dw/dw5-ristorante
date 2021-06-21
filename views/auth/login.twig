@@ -9,6 +9,9 @@
 {% block main %}
 	<div class="container">
 		<form method="POST">
+			{% if errors.notFound %}
+				<p class="error">{{errors.notFound}}</p>
+			{% endif %}
 			{{form.input('email', data.email, 'Email', 'email', 'email', errors.email, 'email')}}
 			{{form.input('password', data.password, 'Mot de passe', 'password', 'password', errors.password, 'password')}}
 			<button>Se connecter</button>

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Form;
 use App\Models\Category;
+use App\Router;
 
 class MainController extends Controller {
   public function getHome() {
@@ -31,7 +32,7 @@ class MainController extends Controller {
 
     if (empty($errors)) {
       // faire quelque chose avec les données ...
-      header('Location: /');
+      Router::redirect('/');
       return;
     }
 

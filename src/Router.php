@@ -64,4 +64,14 @@ class Router extends AltoRouter {
     $mainController = new MainController();
     $mainController->get404();
   }
+
+  public static function redirectLoggedUserToHome() {
+    if (isset($_SESSION['user'])) {
+      header("Location: /");
+    }
+  }
+
+  public static function redirect(string $path) {
+    header("Location: $path");
+  }
 }

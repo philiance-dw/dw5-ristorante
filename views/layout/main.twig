@@ -18,11 +18,31 @@
 			<a href='/' class="ristorante-logo"></a>
 			<nav>
 				<ul>
-					<li><a href="/"class="{{pageName == 'home' ? 'active' : ''}}">Accueil</a></li>
-					<li><a href="/about"class="{{pageName == 'about' ? 'active' : ''}}">A propos</a></li>
-					<li><a href="/menu"class="{{pageName == 'menu' ? 'active' : ''}}">Menu</a></li>
-					<li><a href="/contact"class="{{pageName == 'contact' ? 'active' : ''}}">Contact</a></li>
-					<li><a href="/connexion"class="{{pageName == 'connexion' ? 'active' : ''}}">Connexion</a></li>
+					<li>
+						<a href="/" class="{{pageName == 'home' ? 'active' : ''}}">Accueil</a>
+					</li>
+					<li>
+						<a href="/about" class="{{pageName == 'about' ? 'active' : ''}}">A propos</a>
+					</li>
+					<li>
+						<a href="/menu" class="{{pageName == 'menu' ? 'active' : ''}}">Menu</a>
+					</li>
+					<li>
+						<a href="/contact" class="{{pageName == 'contact' ? 'active' : ''}}">Contact</a>
+					</li>
+
+					{% if user %}
+						<li>
+							<a href="/deconnexion">Déconnexion</a>
+						</li>
+					{% else %}
+
+						<li>
+							<a href="/connexion" class="{{pageName == 'connexion' ? 'active' : ''}}">Connexion</a>
+						</li>
+
+					{% endif %}
+
 				</ul>
 			</nav>
 		</header>

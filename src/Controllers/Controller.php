@@ -19,6 +19,7 @@ abstract class Controller {
     $uri = explode('/', $_SERVER['REQUEST_URI'])[1];
     $pageName = empty($uri) ? 'home' : $uri;
     $twig->addGlobal('pageName', $pageName);
+    $twig->addGlobal('user', $_SESSION['user'] ?? null);
 
     $this->twig = $twig;
   }

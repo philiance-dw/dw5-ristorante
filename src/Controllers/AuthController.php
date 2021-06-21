@@ -4,17 +4,31 @@ namespace App\Controllers;
 
 use App\Form;
 use App\Models\User;
+use App\Router;
 
 class AuthController extends Controller {
   public function getConnection() {
-    $this->render('auth/login.twig', ['title' => 'Connexion']);
+    Router::redirectLoggedUserToHome();
+    $this->render('auth/login.twig', [
+      'title' => 'Connexion',
+    ]);
   }
 
   public function postConnection() {
     $errors = Form::validate($_POST, true);
 
     if (empty($errors)) {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+      $user = User::findOne(['email' => $email]);
 
+      if ($user && password_verify($password, $user->getPassword())) {
+        $_SESSION['user'] = $user;
+        Router::redirect('/');
+        return;
+      }
+
+      $errors['notFound'] = 'email ou mot de passe incorrect';
     }
 
     $this->render('auth/login.twig', [
@@ -25,6 +39,7 @@ class AuthController extends Controller {
   }
 
   public function getSignup() {
+    Router::redirectLoggedUserToHome();
     $this->render('auth/signup.twig', ['title' => 'Inscription']);
   }
 
@@ -47,7 +62,7 @@ class AuthController extends Controller {
         ->setPhone($_POST['phone'])
         ->save();
 
-      header('Location: /connexion');
+      Router::redirect('/connexion');
     }
 
     $this->render('auth/signup.twig', [
@@ -55,5 +70,10 @@ class AuthController extends Controller {
       'errors' => $errors,
       'data' => $_POST,
     ]);
+  }
+
+  public function logout() {
+    unset($_SESSION['user']);
+    Router::redirect('/');
   }
 }
