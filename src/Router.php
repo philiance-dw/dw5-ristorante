@@ -9,16 +9,33 @@ class Router extends AltoRouter {
   private $path;
   private $router;
 
+  /**
+   *
+   * A l'instanciation de notre router on instancie altorouter et on l'affecte à la propriété router de la class
+   *
+   */
   public function __construct() {
     $this->router = new AltoRouter();
   }
 
+  /**
+   * @param string $path  chemin base
+   */
   public function setPath(string $path) {
     $this->path = $path;
     return $this;
   }
 
-  // on vient utiliser la méthode map d'Altorouter pour faire une méthode get personnalisée
+  /**
+   *
+   * On vient utiliser la méthode map d'Altorouter pour faire une méthode get personnalisée
+   *
+   * @param string $route la route à atteindre
+   * @param mixed $target la méthode à executer quand l'utilisateur arrive sur cette route
+   *
+   * @return Router retourne l'instance actuelle du router
+   *
+   */
   public function get($route, $target) {
     $this->router->map('GET', $this->path . $route, $target);
     $this->router->map('GET', $this->path . $route . '/', $target);
@@ -26,12 +43,26 @@ class Router extends AltoRouter {
     return $this;
   }
 
-  // on vient utiliser la méthode map d'Altorouter pour faire une méthode post personnalisée
+  /**
+   *
+   * On vient utiliser la méthode map d'Altorouter pour faire une méthode post personnalisée
+   *
+   * @param string $route la route à atteindre
+   * @param mixed $target la méthode à executer quand l'utilisateur arrive sur cette route
+   *
+   * @return Router retourne l'instance actuelle du router
+   *
+   */
   public function post($route, $target) {
     $this->router->map('POST', $this->path . $route, $target);
     return $this;
   }
 
+  /**
+   *
+   * Cette méthode permet de lancer le router et de vérifier les correspondances avec les routes prédéfinies
+   *
+   */
   public function run() {
     // on vérifie les correspondance d'url et de route
     $match = $this->router->match();
@@ -67,16 +98,29 @@ class Router extends AltoRouter {
       return;
     }
 
+    // on instancie le MainController et on utilise la méthode get404 pour renvoyer une page d'erreur si pas de correspondance
     $mainController = new MainController();
     $mainController->get404();
   }
 
+  /**
+   *
+   * Méthode servant à rediriger en page d'accueil un utilisateur connecté
+   *
+   */
   public static function redirectLoggedUserToHome() {
     if (isset($_SESSION['user'])) {
       header("Location: /");
     }
   }
 
+  /**
+   *
+   * Méthode servant à rediriger selon le paramametre
+   *
+   * @param string $path chemin de redirection
+   *
+   */
   public static function redirect(string $path) {
     header("Location: $path");
   }

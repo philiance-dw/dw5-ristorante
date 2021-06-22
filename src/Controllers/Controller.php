@@ -29,6 +29,14 @@ abstract class Controller {
     $this->twig = $twig;
   }
 
+  /**
+   *
+   * Cette méthode permet de renvoyer un template twig en utilisant la méthode render de twig
+   *
+   * @param string|TemplateWrapper $name Le nom du template
+   * @param array $context Tableau de paramètres à envoyer à la vue
+   *
+   */
   protected function render($name, array $context = []) {
     echo $this->twig->render($name, $context);
   }

@@ -6,6 +6,13 @@ use Dotenv\Dotenv;
 use PDO;
 
 class Database {
+  /**
+   *
+   * Cette méthode permet de charger les variables d'environnement et retourne une instance PDO servant à effectuer des requetes en base de donnée
+   *
+   * @return PDO retourn une instance de PDO
+   *
+   */
   public static function getConnection() {
     $dotenv = Dotenv::createImmutable(dirname(__DIR__));
     $dotenv->load();

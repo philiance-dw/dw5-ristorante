@@ -19,5 +19,19 @@ form {
     @include flex(stretch, center, column nowrap);
     border-radius: inherit;
     color: inherit;
+
+    &:last-of-type {
+      @include flex(stretch, center, column);
+      gap: 1rem;
+    }
   }
+
+  input {
+    width: 100%;
+  }
+}
+
+.input__container {
+  @include flex(stretch, center, column);
+  gap: 1rem;
 }

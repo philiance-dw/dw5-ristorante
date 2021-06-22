@@ -33,7 +33,8 @@ $router->setPath("/admin")
   ->get('/produits', 'ProductController#getProducts')
   ->get('/produits/ajouter', 'ProductController#getAddProduct')
   ->get('/produits/modifier/[i:id]', 'ProductController#getEditProduct')
-  ->get('/produits/supprimer/[i:id]', 'ProductController#deleteProduct');
+  ->get('/produits/supprimer/[i:id]', 'ProductController#deleteProduct')
+  ->get('/plats', 'DishController#getDishes');
 
 $router->post('/categories/ajouter', 'CategoryController#postAddCategory')
   ->post('/categories/modifier/[i:id]', 'CategoryController#postEditCategory')

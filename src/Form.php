@@ -3,7 +3,17 @@
 namespace App;
 
 class Form {
-  public static function validate(array $post, $isLoggingIn = false): array{
+  /**
+   *
+   * Cette méthode permet de valider le formulaire en vérifiant si des champs sont vides, que l'email est bien un email, etc...
+   *
+   * @param array $post tableau contenant les données du formulaire
+   * @param bool $isLoggingIn paramètre permettant de savoir s'il s'agit d'un formulaire de connexion
+   *
+   * @return array Un tableau contenant les potentielles erreurs du formulaire
+   *
+   */
+  public static function validate(array $post, bool $isLoggingIn = false): array{
 // ce tableau servira a stocker nos potentielles erreurs
     $errors = [];
 
