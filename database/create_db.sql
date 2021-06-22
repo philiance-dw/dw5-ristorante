@@ -46,6 +46,7 @@ CREATE TABLE `dishes` (
 	`size` ENUM("junior", "medium", "senior") NOT NULL,
 	`description` TEXT NOT NULL,
 	`price` FLOAT(5, 2) NOT NULL,
+	`image_url` TEXT,
 	`category_id` INTEGER NOT NULL REFERENCES `categories`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 	`created_at` DATETIME DEFAULT NOW(),
 	`updated_at` DATETIME

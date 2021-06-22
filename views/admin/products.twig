@@ -1,0 +1,42 @@
+{% extends "layout/admin.twig" %}
+
+
+{% block main %}
+	<div class="admin__container">
+		<table>
+			<caption>Produits</caption>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>nom</th>
+					<th>quantité</th>
+					<th>prix</th>
+					<th>id catégorie</th>
+					<th>date de création</th>
+					<th>date de modification</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<td>{{product.getId()}}</td>
+						<td>{{product.getName()}}</td>
+						<td>{{product.getQuantity()}}</td>
+						<td>{{product.getPrice()}}</td>
+						<td>{{product.getCategoryId()}}</td>
+						<td>{{product.getCreatedAt()}}</td>
+						<td>{{product.getUpdatedAt() ? product.getUpdatedAt : '-'}}</td>
+						<td>
+							<a href="/admin/produits/modifier/{{product.getId()}}">modifier</a>
+							<a href="/admin/produits/supprimer/{{product.getId()}}">supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="btn__container">
+			<a class="btn" href="/admin/produits/ajouter">Ajouter un produit</a>
+		</div>
+	</div>
+{% endblock %}

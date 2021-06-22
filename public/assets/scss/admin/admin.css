@@ -430,14 +430,14 @@ button:hover,
   padding: 4rem;
 }
 
-.admin__categories {
+.admin__container {
   height: 100%;
   width: 100%;
   max-width: 1280px;
   margin: auto;
 }
 
-.admin__categories .btn__container {
+.admin__container .btn__container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;

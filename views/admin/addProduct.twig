@@ -1,0 +1,17 @@
+{% extends "layout/admin.twig" %}
+
+{% import "macros/forms.twig" as form %}
+
+{% block main %}
+	<form method="POST">
+		{{form.input('name', data.name, 'Nom', 'productName', 'Le nom du produit', errors.name, 'text', true)}}
+		{{form.input('quantity', data.quantity, 'Quantité', 'quantity', 'Quantité du produit', errors.quantity, 'number', true)}}
+		{{form.input('price', data.price, 'Prix', 'price', 'Le prix du produit', errors.price, 'text', true)}}
+		<select name="categoryId" id="categoryId">
+			{% for category in categories %}
+				<option {{data.categoryId == category.getId() ? 'selected' : ''}} value="{{category.getId()}}">{{category.getName()}}</option>
+			{% endfor %}
+		</select>
+		<button class="btn">{{editMode ? 'Modifier': 'Ajouter'}}</button>
+	</form>
+{% endblock %}

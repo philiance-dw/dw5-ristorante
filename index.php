@@ -29,10 +29,16 @@ $router->setPath("/admin")
   ->get('/categories', 'CategoryController#getCategories')
   ->get('/categories/ajouter', 'CategoryController#getAddCategory')
   ->get('/categories/modifier/[i:id]', 'CategoryController#getEditCategory')
-  ->get('/categories/supprimer/[i:id]', 'CategoryController#deleteCategory');
+  ->get('/categories/supprimer/[i:id]', 'CategoryController#deleteCategory')
+  ->get('/produits', 'ProductController#getProducts')
+  ->get('/produits/ajouter', 'ProductController#getAddProduct')
+  ->get('/produits/modifier/[i:id]', 'ProductController#getEditProduct')
+  ->get('/produits/supprimer/[i:id]', 'ProductController#deleteProduct');
 
 $router->post('/categories/ajouter', 'CategoryController#postAddCategory')
-  ->post('/categories/modifier/[i:id]', 'CategoryController#postEditCategory');
+  ->post('/categories/modifier/[i:id]', 'CategoryController#postEditCategory')
+  ->post("/produits/ajouter", 'ProductController#postAddProduct')
+  ->post("/produits/modifier/[i:id]", 'ProductController#postEditProduct');
 
 // on lance le router
 $router->run();
