@@ -27,6 +27,10 @@ class MainController extends Controller {
     $this->render('contact.twig', ['title' => 'Contact']);
   }
 
+  public function getSignature() {
+    $this->render('signature.twig');
+  }
+
   public function postContact() {
     // on valide la firmulaire en utilisant notre class Form
     $errors = Form::validate($_POST);

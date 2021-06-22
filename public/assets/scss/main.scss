@@ -1,6 +1,8 @@
 @import './reset';
 @import './variables';
 @import './fonts';
+@import './placeholders';
+@import './icons';
 
 ::selection {
   background-color: $secondary-color;
@@ -131,31 +133,6 @@ p.error {
       }
     }
   }
-}
-
-[class^='ristorante-']:before,
-[class*=' ristorante-']:before {
-  font-family: 'ristorante' !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.ristorante-facebook:before {
-  content: '\e900';
-  color: $main-color;
-}
-.ristorante-twitter:before {
-  content: '\e901';
-  color: $main-color;
-}
-.ristorante-instagram:before {
-  content: '\e902';
-  color: $main-color;
 }
 
 .page404 {

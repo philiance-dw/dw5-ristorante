@@ -3,6 +3,8 @@
 namespace App;
 
 class Form {
+  private $fields = [];
+
   /**
    *
    * Cette méthode permet de valider le formulaire en vérifiant si des champs sont vides, que l'email est bien un email, etc...
@@ -59,4 +61,18 @@ class Form {
 
     return $errors;
   }
+
+  public function addField($params) {
+    $field = <<<EOL
+		<input />
+		EOL;
+    // code pour ajouter un champ...
+
+    $this->fields[] = $field;
+    return $this;
+  }
 }
+
+// $form = new Form();
+
+// $form->addField('...')->addField('...');

@@ -11,9 +11,33 @@ class ProductController extends Controller {
   public function getProducts() {
     $products = Product::find();
 
-    $this->render('admin/products.twig', [
-      'title' => 'Products',
-      'products' => $products,
+    $content = [];
+
+    foreach ($products as $product) {
+      $id = $product->getId();
+      $action = <<< EOL
+							<a data-tooltip="cliquer pour modifier" class="ristorante-edit" href="/admin/produits/modifier/$id"></a>
+							<a data-tooltip="cliquer pour supprimer" class="ristorante-trash" href="/admin/produits/supprimer/$id"></a>
+			EOL;
+
+      $content[] = [
+        $product->getId(),
+        $product->getName(),
+        $product->getQuantity(),
+        $product->getPrice(),
+        $product->getCategoryId(),
+        $product->getCreatedAt(),
+        $product->getUpdatedAt() ?? '-',
+        $action,
+      ];
+    }
+
+    $this->render('admin/readData.twig', [
+      'title' => 'Produits',
+      'headings' => ['Id', 'Nom', 'Quantité', "Prix", "Id de la catégorie", 'Date de création', 'Date de modification'],
+      'datas' => $content,
+      'entity' => 'produits',
+      'linkText' => 'Ajouter un produit',
     ]);
 
   }
@@ -48,9 +72,6 @@ class ProductController extends Controller {
   }
 
   public function postAddProduct() {
-
-    dd($_POST, $_FILES);
-
     $errors = Form::validate($_POST);
 
     if (empty($errors)) {

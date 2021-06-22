@@ -1,0 +1,48 @@
+@import '../variables';
+@import '../placeholders';
+
+main {
+  padding: 4rem;
+  background: lighten($secondary-color, 15%) url('../../images/brick-wall-dark.png');
+  // color: $main-color;
+  color: #fff;
+}
+
+.container {
+  height: 100%;
+  @include flex(center, flex-start, column nowrap);
+  gap: 4rem;
+  max-width: 1280px;
+  margin: auto;
+}
+
+h1 {
+  @extend %title;
+  color: #fff;
+  font-size: 6rem;
+}
+
+.description {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.price__container {
+  @include flex(center, center);
+  gap: 2rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+
+  span {
+    color: $main-color;
+  }
+}
+
+.btn {
+  @extend %btn;
+  margin-top: 0;
+  border-radius: 5px;
+}

@@ -1,0 +1,64 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.container > form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 4rem;
+}
+
+.container button {
+  color: #fff;
+  border-radius: 10px;
+}
+
+.container button[type='reset'] {
+  background-color: #af3c3c;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+.container button[type='reset']:hover {
+  background-color: #cc6b6b;
+}
+
+.container button[type='submit'] {
+  background-color: #167016;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+.container button[type='submit']:hover {
+  background-color: #23b023;
+}
+
+#canvas {
+  border: 2px solid #302d2d;
+}
+/*# sourceMappingURL=signature.css.map */

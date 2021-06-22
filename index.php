@@ -13,10 +13,12 @@ $router = new Router();
 $router->get('/', 'MainController#getHome')
   ->get('/about', 'MainController#getAbout')
   ->get('/menu', 'MainController#getMenu')
+  ->get('/menu/plats/[i:id]', 'DishController#getDishDescriptionPage')
   ->get('/contact', 'MainController#getContact')
   ->get('/connexion', 'AuthController#getConnection')
   ->get('/deconnexion', 'AuthController#logout')
-  ->get('/inscription', 'AuthController#getSignup');
+  ->get('/inscription', 'AuthController#getSignup')
+  ->get('/signature', 'MainController#getSignature');
 
 $router->post('/contact', 'MainController#postContact')
   ->post('/connexion', 'AuthController#postConnection')
@@ -34,12 +36,17 @@ $router->setPath("/admin")
   ->get('/produits/ajouter', 'ProductController#getAddProduct')
   ->get('/produits/modifier/[i:id]', 'ProductController#getEditProduct')
   ->get('/produits/supprimer/[i:id]', 'ProductController#deleteProduct')
-  ->get('/plats', 'DishController#getDishes');
+  ->get('/plats', 'DishController#getDishes')
+  ->get('/plats/ajouter', 'DishController#getAddDish')
+  ->get('/plats/modifier/[i:id]', 'DishController#getEditDish')
+  ->get('/plats/supprimer/[i:id]', 'DishController#deleteDish');
 
 $router->post('/categories/ajouter', 'CategoryController#postAddCategory')
   ->post('/categories/modifier/[i:id]', 'CategoryController#postEditCategory')
   ->post("/produits/ajouter", 'ProductController#postAddProduct')
-  ->post("/produits/modifier/[i:id]", 'ProductController#postEditProduct');
+  ->post("/produits/modifier/[i:id]", 'ProductController#postEditProduct')
+  ->post("/plats/ajouter", 'DishController#postAddDish')
+  ->post("/plats/modifier/[i:id]", 'DishController#postEditDish');
 
 // on lance le router
 $router->run();

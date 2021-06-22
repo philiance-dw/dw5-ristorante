@@ -1,0 +1,30 @@
+{% extends "layout/admin.twig" %}
+
+
+{% block main %}
+	<div class="admin__container">
+		<table>
+			<caption>{{title}}</caption>
+			<thead>
+				<tr>
+					{% for heading in headings %}
+						<th>{{heading}}</th>
+					{% endfor %}
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in datas %}
+					<tr>
+						{% for data in item %}
+							<td>{{data | raw}}</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="btn__container">
+			<a class="btn" href="/admin/{{entity}}/ajouter">{{linkText}}</a>
+		</div>
+	</div>
+{% endblock %}

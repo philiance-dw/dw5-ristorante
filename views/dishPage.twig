@@ -1,0 +1,22 @@
+{% extends "layout/main.twig" %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/dish/dish.css">
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<h1>{{dish.getName()}}</h1>
+
+		<p class="description">{{dish.getDescription()}}</p>
+
+		<div class="price__container">
+			<strong class="price">{{dish.getPrice()}}
+				<span>€</span>
+			</strong>
+			<form>
+				<button class="btn">Ajouter</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

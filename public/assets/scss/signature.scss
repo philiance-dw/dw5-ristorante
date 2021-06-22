@@ -1,0 +1,39 @@
+@import './variables';
+
+.container {
+  @include flex(center, center, column nowrap);
+  gap: 1rem;
+  height: 100%;
+
+  & > form {
+    @include flex(center, center);
+    gap: 4rem;
+  }
+
+  button {
+    color: #fff;
+    border-radius: 10px;
+  }
+
+  button[type='reset'] {
+    background-color: rgb(175, 60, 60);
+    transition: all 150ms ease;
+
+    &:hover {
+      background-color: lighten(rgb(175, 60, 60), 15%);
+    }
+  }
+
+  button[type='submit'] {
+    background-color: rgb(22, 112, 22);
+    transition: all 150ms ease;
+
+    &:hover {
+      background-color: lighten(rgb(22, 112, 22), 15%);
+    }
+  }
+}
+
+#canvas {
+  border: 2px solid $secondary-color;
+}

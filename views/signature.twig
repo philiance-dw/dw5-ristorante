@@ -1,0 +1,17 @@
+{% extends "layout/main.twig" %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/signature.css">
+	<script src="/public/assets/js/main.js" defer></script>
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<canvas width="600" height="300" id="canvas"></canvas>
+		<form enctype='multipart/form-data'>
+			<button type="reset">Effacer</button>
+			<button type="button">Enregistrer</button>
+			<button type="submit">Envoyer</button>
+		</form>
+	</div>
+{% endblock %}

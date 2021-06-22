@@ -10,9 +10,30 @@ class CategoryController extends Controller {
   public function getCategories() {
     $categories = Category::find();
 
-    $this->render('admin/categories.twig', [
-      'title' => 'Categories',
-      'categories' => $categories,
+    $content = [];
+
+    foreach ($categories as $category) {
+      $id = $category->getId();
+      $action = <<< EOL
+							<a data-tooltip="cliquer pour modifier" class="ristorante-edit" href="/admin/categories/modifier/$id"></a>
+							<a data-tooltip="cliquer pour supprimer" class="ristorante-trash" href="/admin/categories/supprimer/$id"></a>
+			EOL;
+
+      $content[] = [
+        $category->getId(),
+        $category->getName(),
+        $category->getCreatedAt(),
+        $category->getUpdatedAt() ?? '-',
+        $action,
+      ];
+    }
+
+    $this->render('admin/readData.twig', [
+      'title' => 'Catégories',
+      'headings' => ['Id', 'Nom', 'Date de création', 'Date de modification'],
+      'datas' => $content,
+      'entity' => 'categories',
+      'linkText' => 'Ajouter une catégorie',
     ]);
 
   }

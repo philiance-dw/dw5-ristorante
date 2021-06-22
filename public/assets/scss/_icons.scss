@@ -1,0 +1,61 @@
+@import './variables';
+
+[class^='ristorante-']:before,
+[class*=' ristorante-']:before {
+  font-family: 'ristorante' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ristorante-facebook:before {
+  content: $icon-fb;
+  color: $main-color;
+}
+.ristorante-twitter:before {
+  content: $icon-twitter;
+  color: $main-color;
+}
+.ristorante-instagram:before {
+  content: $icon-instagram;
+  color: $main-color;
+}
+
+.ristorante-edit,
+.ristorante-trash {
+  transition: all 250ms ease;
+}
+
+.ristorante-edit:before,
+.ristorante-trash:before {
+  font-size: 1.75rem;
+}
+
+.ristorante-trash {
+  &:before {
+    content: $icon-trash;
+    color: red;
+  }
+
+  &:hover {
+    &:before {
+      color: lighten(red, 20%);
+    }
+  }
+}
+
+.ristorante-edit {
+  &:before {
+    content: $icon-edit;
+    color: rgb(49, 49, 119);
+  }
+  &:hover {
+    &:before {
+      color: lighten(rgb(49, 49, 119), 20%);
+    }
+  }
+}

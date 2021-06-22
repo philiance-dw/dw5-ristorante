@@ -15,3 +15,13 @@
     background-color: lighten($main-color, 10%);
   }
 }
+
+%title {
+  font-family: $parisienne-ff;
+  letter-spacing: 1px;
+
+  &::first-letter {
+    color: $main-color;
+    font-family: $ristorante-first-letter-ff;
+  }
+}

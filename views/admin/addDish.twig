@@ -1,0 +1,22 @@
+{% extends "layout/admin.twig" %}
+
+{% import "macros/forms.twig" as form %}
+
+{% block main %}
+	<form method="POST">
+		{{form.input('name', data.name, 'Nom', 'dishName', 'Le nom du plat', errors.name, 'text', true)}}
+		<select name="size">
+			<option {{data.size == 'junior' ? 'selected' : '' }} value="junior">Junior</option>
+			<option {{data.size == 'medium' ? 'selected' : '' }} value="medium">Medium</option>
+			<option {{data.size == 'senior' ? 'selected' : '' }} value="senior">Senior</option>
+		</select>
+		{{form.textarea('description', data.description, 'Description', 'description', 'Description', errors.description)}}
+		{{form.input('price', data.price, 'Prix', 'price', 'Le prix du plat', errors.price, 'text')}}
+		<select name="categoryId" id="categoryId">
+			{% for category in categories %}
+				<option {{data.categoryId == category.getId() ? 'selected' : ''}} value="{{category.getId()}}">{{category.getName()}}</option>
+			{% endfor %}
+		</select>
+		<button class="btn">{{editMode ? 'Modifier': 'Ajouter'}}</button>
+	</form>
+{% endblock %}
