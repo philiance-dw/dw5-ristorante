@@ -7,6 +7,7 @@ class Dish extends Model {
   private $size;
   private $description;
   private $price;
+  private $image_url = null;
   private $category_id;
 
   public function __construct() {
@@ -42,6 +43,14 @@ class Dish extends Model {
   }
   public function setPrice(float $price): self {
     $this->price = $price;
+    return $this;
+  }
+
+  public function getImageUrl() {
+    return $this->image_url;
+  }
+  public function setImageUrl(string $image_url): self {
+    $this->image_url = $image_url;
     return $this;
   }
 
