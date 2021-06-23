@@ -7,15 +7,15 @@
 {% block main %}
 	<div class="container">
 		<ul>
-			{% for key,value in dishes %}
+			{% for category in categories %}
 				<li>
 					<h2>
-						{{key}}
+						{{category.getName()}}
 					</h2>
 					<ul>
-						{% for dish in value %}
+						{% for dish in category.getDishes %}
 							<li>
-								<a href="/menu/plats/{{dish.id}}">{{dish.name}}
+								<a href="/menu/plats/{{dish.getId()}}">{{dish.getName()}}
 								</a>
 							</li>
 

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Form;
+use App\Models\Cart;
 use App\Models\User;
 use App\Router;
 
@@ -23,7 +24,7 @@ class AuthController extends Controller {
       $user = User::findOne(['email' => $email]);
 
       if ($user && password_verify($password, $user->getPassword())) {
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = serialize($user);
         Router::redirect($user->getIsAdmin() ? '/admin/accueil' : '/');
         return;
       }
@@ -50,7 +51,7 @@ class AuthController extends Controller {
       $hashedPassword = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 14]);
 
       $user = new User();
-      $user
+      $user = $user
         ->setFirstName($_POST['firstName'])
         ->setLastName($_POST['lastName'])
         ->setEmail($_POST['email'])
@@ -61,6 +62,9 @@ class AuthController extends Controller {
         ->setPostalCode($_POST['postalCode'])
         ->setPhone($_POST['phone'])
         ->save();
+
+      $cart = new Cart();
+      $cart->setUserId($user->getId())->save();
 
       Router::redirect('/connexion');
     }

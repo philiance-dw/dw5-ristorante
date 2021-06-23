@@ -1,0 +1,32 @@
+{% extends "layout/main.twig" %}
+
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/cart/cart.css">
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<ul>
+			{% for item in cart.getItems() %}
+				<li>
+					<div class="image__container">
+						<img src="{{item.getImageUrl()}}" alt="">
+					</div>
+					<p>
+						{{item.getName()}}
+					</p>
+					<p>
+						{{item.getQuantity()}}
+					</p>
+					<p>
+						{{item.getQuantity() * item.getPrice()}}€
+					</p>
+				</li>
+			{% endfor %}
+		</ul>
+		{% if totalPrice %}
+			<strong>{{totalPrice}}€</strong>
+		{% endif %}
+	</div>
+{% endblock %}

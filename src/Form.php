@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Ramsey\Uuid\Uuid;
+
 class Form {
   private $fields = [];
 
@@ -60,6 +62,46 @@ class Form {
     }
 
     return $errors;
+  }
+
+/**
+ *
+ * Cette méthode permet d'envoyer un fichier au serveur et de le stocker
+ *
+ * @param string $uploadDir Le chemin absolu du dossier de destination du fichier en partant de la racine du serveur
+ * @param array &$errors Le tableau d'erreur à modifier en cas d'erreur fichier
+ * @param array $options Un tableau d'options avec la clé allowedTypes contenant un tableau correspondant aux fichiers acceptés
+ *
+ * @return string Le chemin d'ajout du fichier à stocker en base de donnée
+ *
+ */
+  public static function uploadFile(string $uploadDir, array &$errors = [], array $options = []) {
+    [
+      'allowedTypes' ?? null => $allowedTypes,
+    ] = $options;
+
+    $image = $_FILES['image'] ?? null;
+
+    if ($image && $image['error'] === UPLOAD_ERR_OK) {
+      ['extension' ?? null => $extension, 'filename' ?? null => $filename] = pathinfo($image['name']);
+
+      if ($allowedTypes && !in_array($extension, $allowedTypes)) {
+        $errors['fileError'] = "Type de fichier non accepté.";
+      }
+
+      if (empty($errors) && $filename) {
+        $filename = Uuid::uuid4();
+        $filename .= ".$extension";
+
+        $uploadFile = $uploadDir . $filename;
+
+        if (!move_uploaded_file($image['tmp_name'], dirname(__DIR__) . $uploadFile)) {
+          $errors['fileError'] = "Problème durant l'ajout du fichier.";
+        }
+      }
+    }
+
+    return $uploadFile;
   }
 
   public function addField($params) {

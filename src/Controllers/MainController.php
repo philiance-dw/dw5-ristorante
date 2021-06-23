@@ -17,10 +17,18 @@ class MainController extends Controller {
   }
 
   public function getMenu() {
-    // on recupere les categories et les plats associés
-    $dishes = Category::getDishes();
+    $categories = Category::find();
 
-    $this->render('menu.twig', ['title' => 'Menu', 'dishes' => $dishes]);
+    foreach ($categories as $index => $category) {
+      // on recupere les categories et les plats associés
+      $category->populateDishes();
+
+      if (empty($category->getDishes())) {
+        unset($categories[$index]);
+      }
+    }
+
+    $this->render('menu.twig', ['title' => 'Menu', 'categories' => $categories]);
   }
 
   public function getContact() {

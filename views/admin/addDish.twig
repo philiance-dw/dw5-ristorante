@@ -3,7 +3,7 @@
 {% import "macros/forms.twig" as form %}
 
 {% block main %}
-	<form method="POST">
+	<form method="POST" enctype="multipart/form-data">
 		{{form.input('name', data.name, 'Nom', 'dishName', 'Le nom du plat', errors.name, 'text', true)}}
 		<select name="size">
 			<option {{data.size == 'junior' ? 'selected' : '' }} value="junior">Junior</option>
@@ -17,6 +17,7 @@
 				<option {{data.categoryId == category.getId() ? 'selected' : ''}} value="{{category.getId()}}">{{category.getName()}}</option>
 			{% endfor %}
 		</select>
+		<input type="file" name="image"/>
 		<button class="btn">{{editMode ? 'Modifier': 'Ajouter'}}</button>
 	</form>
 {% endblock %}

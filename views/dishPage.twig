@@ -7,14 +7,17 @@
 {% block main %}
 	<div class="container">
 		<h1>{{dish.getName()}}</h1>
-
+		<div class="image__container">
+			<img src="{{dish.getImageUrl()}}" alt="">
+		</div>
 		<p class="description">{{dish.getDescription()}}</p>
 
 		<div class="price__container">
 			<strong class="price">{{dish.getPrice()}}
 				<span>€</span>
 			</strong>
-			<form>
+			<form class="add__button__container" method="POST">
+				<input value="1" min="1" max="20" type="number" name="quantity">
 				<button class="btn">Ajouter</button>
 			</form>
 		</div>

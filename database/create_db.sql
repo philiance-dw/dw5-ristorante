@@ -52,12 +52,20 @@ CREATE TABLE `dishes` (
 	`updated_at` DATETIME
 );
 
-CREATE TABLE `cart` (
-	`user_id` INTEGER NOT NULL REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+CREATE TABLE `carts` (
+	`id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+	`user_id` INTEGER REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	`created_at` DATETIME DEFAULT NOW(),
+	`updated_at` DATETIME
+);
+
+CREATE TABLE `cart_items` (
+	`cart_id` INTEGER NOT NULL REFERENCES `carts`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 	`dish_id` INTEGER NOT NULL REFERENCES `dishes`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	`quantity` INTEGER NOT NULL,
 	`created_at` DATETIME DEFAULT NOW(),
 	`updated_at` DATETIME,
-	PRIMARY KEY(`user_id`, `dish_id`)
+	PRIMARY KEY(`cart_id`, `dish_id`)
 );
 
 CREATE TABLE `reviews` (

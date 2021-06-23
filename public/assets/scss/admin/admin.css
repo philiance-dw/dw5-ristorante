@@ -123,6 +123,16 @@ button:hover,
   background-color: #ffd933;
 }
 
+.brand__name {
+  font-family: "Parisienne", cursive;
+  letter-spacing: 1px;
+}
+
+.brand__name::first-letter {
+  color: #ffd000;
+  font-family: "Dancing Script", cursive;
+}
+
 [class^='ristorante-']:before,
 [class*=' ristorante-']:before {
   font-family: 'ristorante' !important;
@@ -194,6 +204,7 @@ body {
   display: grid;
   -ms-grid-rows: 6rem auto 8rem;
       grid-template-rows: 6rem auto 8rem;
+      grid-template-areas: 'header' 'main' 'footer';
 }
 
 .main__header {
@@ -212,6 +223,14 @@ body {
           justify-content: space-between;
   padding: 0 4rem;
   background-color: #302d2d;
+  position: fixed;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: header;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 6rem;
 }
 
 .nav ul {
@@ -243,6 +262,23 @@ body {
   text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
 }
 
+.brand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+}
+
 .ristorante-logo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -272,9 +308,23 @@ body {
 }
 
 .ristorante-logo::before {
-  content: '\e903';
+  content: "";
   color: white;
   font-size: 1.25rem;
+}
+
+.brand__name {
+  font-size: 2rem;
+  color: #fff;
+}
+
+main {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: main;
+  padding: 4rem;
+  background: #575252 url("../images/brick-wall-dark.png");
+  color: #fff;
 }
 
 .brand--text {
@@ -322,6 +372,9 @@ p.error {
 }
 
 .main__footer {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: footer;
   background-color: #302d2d;
   padding: 1rem;
   display: -webkit-box;
@@ -436,6 +489,16 @@ button,
 button:hover,
 .btn:hover {
   background-color: #ffd933;
+}
+
+.brand__name {
+  font-family: "Parisienne", cursive;
+  letter-spacing: 1px;
+}
+
+.brand__name::first-letter {
+  color: #ffd000;
+  font-family: "Dancing Script", cursive;
 }
 
 [class^='ristorante-']:before,

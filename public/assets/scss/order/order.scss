@@ -1,0 +1,87 @@
+@import '../variables';
+@import '../placeholders';
+
+main {
+  padding: 4rem;
+  background: lighten($secondary-color, 15%) url('../../images/brick-wall-dark.png');
+}
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+  width: 100%;
+  color: lighten($secondary-color, 80%);
+}
+
+.category {
+  @extend %title;
+  font-size: 5rem;
+  padding: 1rem 0;
+  text-transform: capitalize;
+}
+
+.dish__container {
+  display: grid;
+  grid-template-columns: 2fr repeat(2, 1fr);
+  place-items: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: lighten($secondary-color, 40%);
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  transition: all 250ms ease;
+
+  &:hover {
+    background-color: lighten($secondary-color, 50%);
+  }
+}
+
+.dish__name {
+  @include flex(center);
+  gap: 1rem;
+  width: fit-content;
+  justify-self: flex-start;
+}
+
+.name {
+  @extend %title;
+  font-size: 3rem;
+}
+
+.image {
+  height: 8rem;
+  width: 8rem;
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.size {
+  font-size: 1.5rem;
+}
+
+.price {
+  @include flex(center, center);
+  gap: 1rem;
+
+  strong {
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  input[type='number'] {
+    width: 5rem;
+    border-color: transparent;
+    color: $secondary-color;
+  }
+
+  button {
+    font-size: 1rem;
+    margin-top: 0;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+  }
+}

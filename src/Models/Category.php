@@ -8,6 +8,8 @@ use PDO;
 class Category extends Model {
   /** @var string */
   private $name;
+  /** @var Dish[] $dishes */
+  private $dishes; // pas present en BDD
 
   public function __construct() {
     $this->table = 'categories';
@@ -21,10 +23,30 @@ class Category extends Model {
     return $this;
   }
 
-  public static function getDishes() {
+  public function getDishes() {
+    return $this->dishes;
+  }
+
+  public function setDishes(array $dishes) {
+    $this->dishes = $dishes;
+    return $this;
+  }
+
+  public function populateDishes() {
+    $query = <<< EOL
+		SELECT * FROM dishes
+		WHERE category_id=:id
+		EOL;
+
     $pdo = Database::getConnection();
-    $statement = $pdo->prepare("SELECT c.name, d.id, d.name, d.description, d.size, d.price, d.created_at, d.updated_at FROM categories as c JOIN dishes as d ON c.id=d.category_id");
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_GROUP);
+
+    $statement = $pdo->prepare($query);
+    $statement->execute([':id' => $this->getId()]);
+
+    $response = $statement->fetchAll(PDO::FETCH_CLASS, Dish::class);
+
+    if (!empty($response)) {
+      $this->setDishes($response);
+    }
   }
 }

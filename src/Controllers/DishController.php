@@ -53,12 +53,15 @@ class DishController extends Controller {
   public function postAddDish() {
     $errors = Form::validate($_POST);
 
+    $uploadFile = Form::uploadFile('/public/uploads/dishes/', $errors);
+
     if (empty($errors)) {
       $dish = new Dish();
       $dish->setName($_POST['name'])
         ->setSize($_POST['size'])
         ->setDescription($_POST['description'])
         ->setPrice($_POST['price'])
+        ->setImageUrl($uploadFile)
         ->setCategoryId($_POST['categoryId'])
         ->save();
 
@@ -96,12 +99,15 @@ class DishController extends Controller {
   public function postEditDish(int $id) {
     $errors = Form::validate($_POST);
 
+    $uploadFile = Form::uploadFile('/public/uploads/dishes/', $errors);
+
     if (empty($errors)) {
       $dish = new Dish();
       $dish->setId($id)
         ->setName($_POST['name'])
         ->setSize($_POST['size'])
         ->setDescription($_POST['description'])
+        ->setImageUrl($uploadFile)
         ->setPrice($_POST['price'])
         ->setCategoryId($_POST['categoryId'])
         ->save();

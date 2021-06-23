@@ -4,7 +4,12 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/public/assets/scss/main.css"> {% block head %}{% endblock %}
+
+		<link rel="stylesheet" href="/public/assets/scss/main.css">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="/public/assets/js/main.js" defer></script>
+		{% block head %}{% endblock %}
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -15,23 +20,26 @@
 	</head>
 	<body>
 		<header class="main__header">
-			<a href='/' class="ristorante-logo"></a>
+
+			<a class="brand" href='/'>
+				<span class="ristorante-logo"></span>
+				<span class="brand__name">Ristorante</span>
+			</a>
 			<nav class="nav">
 				<ul>
 					<li>
 						<a href="/" class="{{pageName == 'home' ? 'active' : ''}}">Accueil</a>
 					</li>
 					<li>
-						<a href="/about" class="{{pageName == 'about' ? 'active' : ''}}">A propos</a>
-					</li>
-					<li>
 						<a href="/menu" class="{{pageName == 'menu' ? 'active' : ''}}">Menu</a>
 					</li>
-					<li>
-						<a href="/contact" class="{{pageName == 'contact' ? 'active' : ''}}">Contact</a>
-					</li>
-
 					{% if user %}
+						<li>
+							<a href="/commander" class="{{pageName == 'commander' ? 'active' : ''}}">Commander</a>
+						</li>
+						<li>
+							<a href="/panier" class="{{pageName == 'panier' ? 'active' : ''}}">Panier</a>
+						</li>
 						<li>
 							<a href="/deconnexion">Déconnexion</a>
 						</li>
@@ -60,6 +68,11 @@
 					<a class="ristorante-twitter" href="#"></a>
 				</li>
 			</ul>
+			<ul>
+				<li><a href="/about"class="{{pageName == 'about' ? 'active' : ''}}">A propos</a></li>
+				<li><a href="/contact"class="{{pageName == 'contact' ? 'active' : ''}}">Contact</a></li>
+			</ul>
+
 		</footer>
 	</body>
 </html>

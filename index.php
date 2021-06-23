@@ -18,11 +18,17 @@ $router->get('/', 'MainController#getHome')
   ->get('/connexion', 'AuthController#getConnection')
   ->get('/deconnexion', 'AuthController#logout')
   ->get('/inscription', 'AuthController#getSignup')
-  ->get('/signature', 'MainController#getSignature');
+  ->get('/signature', 'MainController#getSignature')
+  ->get('/commander', 'OrderController#getOrderingPage')
+  ->get('/panier', 'CartController#getCartPage');
 
 $router->post('/contact', 'MainController#postContact')
   ->post('/connexion', 'AuthController#postConnection')
+  ->post('/menu/plats/[i:id]', 'CartController#postAddDishToCart')
   ->post('/inscription', 'AuthController#postSignup');
+
+$router->setPath('/api')
+  ->post('/addCartItem', 'ApiController#postAddDishToCart');
 
 // on définit nos routes admin
 $router->setPath("/admin")

@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Database;
+use PDO;
+
 // interface Test {
 //   public function test(string $message);
 // }
@@ -19,6 +22,7 @@ class User extends Model {
   private $email;
   private $password;
   private $is_admin = false;
+  private $cart;
 
   public function __construct() {
     $this->table = 'users';
@@ -104,4 +108,24 @@ class User extends Model {
     return $this;
   }
 
+  public function getCart() {
+    return $this->cart;
+  }
+  public function setCart($cart) {
+    $this->cart = $cart;
+    return $this;
+  }
+
+  public function populateCart() {
+    $pdo = Database::getConnection();
+    $statement = $pdo->prepare("SELECT * FROM carts WHERE user_id=:id");
+    $statement->execute([':id' => $this->getId()]);
+    $cart = $statement->fetchAll(PDO::FETCH_CLASS, Cart::class);
+
+    if ($cart) {
+      $cart = $cart[0];
+      $cart->populateItems();
+      $this->setCart($cart);
+    }
+  }
 }

@@ -1,0 +1,40 @@
+{% extends "layout/main.twig" %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/order/order.css">
+	<script src="/public/assets/js/api-addCartItem.js" defer></script>
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<ul>
+			{% for category in categories %}
+				<ul>
+					<li class="category">{{category.getName()}}</li>
+					{% for dish in category.getDishes() %}
+						<ul>
+							<li class="dish__container">
+								<a href="/menu/plats/{{dish.getId()}}" class="dish__name">
+									{% set image = dish.getImageUrl() %}
+									<span style="background-image: url({{image}})" class="image"></span>
+									<span class="name">
+										{{dish.getName()}}
+									</span>
+								</a>
+								<div class="size">
+									{{dish.getSize()}}
+								</div>
+								<div class="price">
+									<strong>{{dish.getPrice()}}€</strong>
+									<input value="1" min="1" max="20" type="number" name="quantity">
+									<button class="btn">Ajouter</button>
+									<input type="hidden" name="dish_id" value="{{dish.getId()}}">
+								</div>
+							</li>
+						</ul>
+					{% endfor %}
+				</ul>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

@@ -12,12 +12,19 @@
 body {
   display: grid;
   grid-template-rows: 6rem auto 8rem;
+  grid-template-areas: 'header' 'main' 'footer';
 }
 
 .main__header {
   @include flex(center, space-between);
   padding: 0 4rem;
   background-color: $secondary-color;
+  position: fixed;
+  grid-area: header;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 6rem;
 }
 
 .nav {
@@ -39,6 +46,11 @@ body {
   }
 }
 
+.brand {
+  @include flex(center, center);
+  gap: 1rem;
+}
+
 .ristorante-logo {
   @include flex(center, center);
   width: 2.5rem;
@@ -53,10 +65,24 @@ body {
   }
 
   &::before {
-    content: '\e903';
+    content: $icon-logo;
     color: white;
     font-size: 1.25rem;
   }
+}
+
+.brand__name {
+  @extend %title;
+  font-size: 2rem;
+  color: #fff;
+}
+
+main {
+  grid-area: main;
+  padding: 4rem;
+  background: lighten($secondary-color, 15%) url('../images/brick-wall-dark.png');
+  // color: $main-color;
+  color: #fff;
 }
 
 .brand--text {
@@ -108,6 +134,7 @@ p.error {
 }
 
 .main__footer {
+  grid-area: footer;
   background-color: $secondary-color;
   padding: 1rem;
   @include flex(center, center, column nowrap);

@@ -102,7 +102,7 @@ abstract class Model {
       return $this->create($objArray);
     }
 
-    $this->update($objArray);
+    return $this->update($objArray);
   }
 
   public function create(array $entityArray): false | self{

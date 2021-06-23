@@ -13,6 +13,7 @@ class Dish extends Model {
   private $image_url = null;
   private $category_id;
   private $category_name; // pas présent en bdd
+  private $quantity; // pas présent en BDD
 
   public function __construct() {
     $this->table = "dishes";
@@ -109,6 +110,14 @@ class Dish extends Model {
   }
   public function setCategoryName(string $category_name): self {
     $this->category_name = $category_name;
+    return $this;
+  }
+
+  public function getQuantity() {
+    return $this->quantity;
+  }
+  public function setQuantity(string $quantity): self {
+    $this->quantity = $quantity;
     return $this;
   }
 }

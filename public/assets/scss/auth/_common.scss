@@ -1,5 +1,10 @@
 @import '../variables';
 
+main {
+  padding: 0;
+  color: $secondary-color;
+}
+
 .container {
   @include flex(center, center);
   background: $secondary-color url('/public/assets/images/main-bg.jpg');
