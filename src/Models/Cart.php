@@ -76,7 +76,7 @@ class Cart extends Model {
     ]);
   }
 
-  public function updateItem(int $dish_id, int $quantity) {
+  public function updateItem(int $dish_id, int $quantity, bool $isExact = false) {
     $pdo = Database::getConnection();
     $params = [
       ':cart_id' => $this->getId(),
@@ -88,7 +88,9 @@ class Cart extends Model {
     $statement->execute($params);
     $oldQuantity = (int) $statement->fetch(PDO::FETCH_COLUMN);
 
-    $quantity += $oldQuantity;
+    if (!$isExact) {
+      $quantity += $oldQuantity;
+    }
 
     $query = <<< EOL
 		UPDATE cart_items
@@ -102,7 +104,7 @@ class Cart extends Model {
     return $statement->execute($params);
   }
 
-  public function addOrUpdateItem(int $dish_id, int $quantity) {
+  public function addOrUpdateItem(int $dish_id, int $quantity, bool $isExact = false) {
     $response = '';
 
     try {
@@ -111,10 +113,22 @@ class Cart extends Model {
       $message = $e->getMessage();
 
       if (str_contains(strtolower($message), 'duplicate')) {
-        $response = $this->updateItem($dish_id, $quantity);
+        $response = $this->updateItem($dish_id, $quantity, $isExact);
       }
     } finally {
       return $response;
     }
+  }
+
+  public function deleteItem(int $dish_id) {
+    $pdo = Database::getConnection();
+    $params = [
+      ':cart_id' => $this->getId(),
+      ':dish_id' => $dish_id,
+    ];
+
+    $query = "DELETE FROM cart_items WHERE dish_id=:dish_id AND cart_id=:cart_id";
+    $statement = $pdo->prepare($query);
+    return $statement->execute($params);
   }
 }

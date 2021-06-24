@@ -1,6 +1,6 @@
 @import '../variables';
 
-main {
+.main__main {
   padding: 0;
   color: $secondary-color;
 }
@@ -9,17 +9,26 @@ main {
   @include flex(center, center);
   background: $secondary-color url('/public/assets/images/main-bg.jpg');
   height: 100%;
+  padding: 2rem 1rem;
   background-size: cover;
   background-position: top center;
 
   form {
     @include flex(center, center, column nowrap);
     gap: 2rem;
-    padding: 4rem;
+    padding: 2rem 1rem;
     background-color: rgba(255, 255, 255, 0.5);
     width: 100%;
     max-width: 900px;
     border-radius: 10px;
+
+    @include sm {
+      padding: 2rem;
+    }
+
+    @include md {
+      padding: 4rem;
+    }
 
     & > div {
       @include flex(stretch, center, column nowrap);
@@ -32,7 +41,12 @@ main {
 
       input {
         padding: 0.75rem;
+        color: $secondary-color;
       }
+    }
+
+    button {
+      margin-top: 0;
     }
   }
 

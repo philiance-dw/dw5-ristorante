@@ -26,6 +26,12 @@
 				<span class="brand__name">Ristorante</span>
 			</a>
 			<nav class="nav">
+				<input type="checkbox" id="burger">
+				<label class="burger" for="burger">
+					<div class="ristorante-fork"></div>
+					<div class="ristorante-spoon"></div>
+					<div class="ristorante-knife"></div>
+				</label>
 				<ul>
 					<li>
 						<a href="/" class="{{pageName == 'home' ? 'active' : ''}}">Accueil</a>
@@ -48,11 +54,11 @@
 							<a href="/connexion" class="{{pageName == 'connexion' ? 'active' : ''}}">Connexion</a>
 						</li>
 					{% endif %}
-
 				</ul>
 			</nav>
 		</header>
-		<main>
+		<main class="main__main">
+			<div id="notif"></div>
 			{% block main %}{% endblock %}
 		</main>
 		<footer class="main__footer">
@@ -68,11 +74,14 @@
 					<a class="ristorante-twitter" href="#"></a>
 				</li>
 			</ul>
-			<ul>
-				<li><a href="/about"class="{{pageName == 'about' ? 'active' : ''}}">A propos</a></li>
-				<li><a href="/contact"class="{{pageName == 'contact' ? 'active' : ''}}">Contact</a></li>
+			<ul class='cgu'>
+				<li>
+					<a href="/about" class="{{pageName == 'about' ? 'active' : ''}}">A propos</a>
+				</li>
+				<li>
+					<a href="/contact" class="{{pageName == 'contact' ? 'active' : ''}}">Contact</a>
+				</li>
 			</ul>
-
 		</footer>
 	</body>
 </html>

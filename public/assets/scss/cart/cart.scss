@@ -1,9 +1,150 @@
 @import '../variables';
+@import '../placeholders';
+
+.container {
+  @include flex(stretch, flex-start, column nowrap);
+  gap: 4rem;
+  height: 100%;
+  font-size: 0.75rem;
+  padding: 0;
+
+  @include lg {
+    font-size: 1rem;
+  }
+
+  & > ul {
+    @include flex(stretch, space-between, column nowrap);
+    height: 100%;
+  }
+
+  .list__child {
+    @include flex(center, space-between, column nowrap);
+    padding: 1.5em 0;
+    border-bottom: 2px solid transparentize($secondary-color, 0.5);
+    gap: 2rem;
+
+    &:last-of-type {
+      border-bottom: none;
+      align-self: flex-end;
+    }
+
+    @include md {
+      flex-flow: row nowrap;
+      gap: 0;
+    }
+  }
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: all 250ms ease;
+  opacity: 0;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  & > * {
+    @include flex(center, space-between, column nowrap);
+    position: absolute;
+    padding: 4em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 40em;
+    max-width: 900px;
+    width: 80%;
+    background-color: #fff;
+    color: $secondary-color;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  > form {
+    min-height: 20em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+
+  .btn__container {
+    @include flex(center, center);
+    gap: 2em;
+
+    button {
+      border-radius: 10px;
+    }
+  }
+}
 
 .image__container {
-  width: 8rem;
+  @include flex(center, flex-start, column nowrap);
+  gap: 1em;
+  justify-self: flex-start;
+  width: 8em;
+
+  @include md {
+    flex-flow: row nowrap;
+  }
 
   img {
     max-width: 100%;
+    border-radius: 10px;
+  }
+
+  span {
+    @extend %title;
+    font-size: 3em;
+  }
+}
+
+.price__container {
+  @include flex(center, space-between);
+  gap: 1em;
+
+  @include md {
+    width: auto;
+  }
+}
+
+.quantity__container {
+  @include flex(center, center);
+  gap: 1rem;
+  input[type='number'] {
+    width: 4em;
+    border-color: transparent;
+    color: $secondary-color;
+    padding: 0.75em 1em;
+    font-size: 1.1em;
+  }
+}
+
+.size {
+  font-size: 1.5em;
+}
+
+.price {
+  justify-self: flex-end;
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+.total-price {
+  grid-column: 2 / 4;
+  justify-self: flex-end;
+  font-size: 1.75em;
+
+  strong {
+    font-weight: bold;
+    font-size: 1.5em;
   }
 }

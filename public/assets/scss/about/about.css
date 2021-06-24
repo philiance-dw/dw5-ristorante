@@ -1,4 +1,4 @@
-main {
+.main__main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,28 +12,52 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 4rem;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 992px) {
+  .main__main {
+    padding: 4rem;
+  }
 }
 
 .content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 8rem;
+  gap: 4rem;
+}
+
+@media (min-width: 1200px) {
+  .content {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    gap: 8rem;
+  }
 }
 
 .content iframe {
-  height: 50vh;
+  width: 100%;
+  aspect-ratio: 16 /9;
+}
+
+@media (min-width: 1200px) {
+  .content iframe {
+    min-height: 50%;
+    width: 50%;
+  }
 }
 
 .content > * {
@@ -42,6 +66,13 @@ main {
 
 .description {
   font-family: "Roboto", arial, sans-serif;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .description {
+    width: 50%;
+  }
 }
 
 .description h1 {

@@ -1,20 +1,31 @@
 @import '../variables';
 
-main {
+.main__main {
   @include flex(center, center);
+  padding: 2rem 1rem;
+
+  @include md {
+    padding: 4rem;
+  }
 }
 
 form {
   @include flex(stretch, center, column nowrap);
   gap: 1rem;
   max-width: 600px;
-  width: 75%;
+  width: 90%;
   margin: auto;
   border-radius: 10px;
-  padding: 2rem 4rem;
+  padding: 1rem 2rem;
   color: $secondary-color;
   box-shadow: 2px 2px 10px 5px transparentize($secondary-color, 0.5);
   background-color: #fff;
+  font-size: 0.85rem;
+
+  @include md {
+    font-size: 1rem;
+    padding: 2rem 4rem;
+  }
 
   & > div {
     @include flex(stretch, center, column nowrap);
@@ -29,6 +40,13 @@ form {
 
   input {
     width: 100%;
+  }
+
+  label,
+  input,
+  textarea,
+  button {
+    font-size: 1em;
   }
 }
 

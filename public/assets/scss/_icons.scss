@@ -36,6 +36,8 @@
 }
 
 .ristorante-trash {
+  cursor: pointer;
+
   &:before {
     content: $icon-trash;
     color: red;
@@ -49,6 +51,8 @@
 }
 
 .ristorante-edit {
+  cursor: pointer;
+
   &:before {
     content: $icon-edit;
     color: rgb(49, 49, 119);
@@ -57,5 +61,30 @@
     &:before {
       color: lighten(rgb(49, 49, 119), 20%);
     }
+  }
+}
+
+.ristorante-fork {
+  @include flex(center, center);
+
+  &:before {
+    content: $icon-fork;
+    color: $main-color;
+  }
+}
+.ristorante-knife {
+  @include flex(center, center);
+
+  &:before {
+    content: $icon-knife;
+    color: $main-color;
+  }
+}
+.ristorante-spoon {
+  @include flex(center, center);
+
+  &:before {
+    content: $icon-spoon;
+    color: $main-color;
   }
 }

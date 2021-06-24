@@ -1,4 +1,4 @@
-main {
+.main__main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,6 +12,13 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .main__main {
+    padding: 4rem;
+  }
 }
 
 form {
@@ -30,14 +37,22 @@ form {
           justify-content: center;
   gap: 1rem;
   max-width: 600px;
-  width: 75%;
+  width: 90%;
   margin: auto;
   border-radius: 10px;
-  padding: 2rem 4rem;
+  padding: 1rem 2rem;
   color: #302d2d;
   -webkit-box-shadow: 2px 2px 10px 5px rgba(48, 45, 45, 0.5);
           box-shadow: 2px 2px 10px 5px rgba(48, 45, 45, 0.5);
   background-color: #fff;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  form {
+    font-size: 1rem;
+    padding: 2rem 4rem;
+  }
 }
 
 form > div {
@@ -77,6 +92,13 @@ form > div:last-of-type {
 
 form input {
   width: 100%;
+}
+
+form label,
+form input,
+form textarea,
+form button {
+  font-size: 1em;
 }
 
 .input__container {

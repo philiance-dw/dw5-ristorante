@@ -84,31 +84,3 @@ table {
 .btn {
   @extend %btn;
 }
-
-[data-tooltip] {
-  position: relative;
-
-  &:after {
-    @include flex(center, center);
-    min-width: 15rem;
-    top: -2rem;
-    left: 2rem;
-    content: attr(data-tooltip);
-    position: absolute;
-    background-color: $secondary-color;
-    color: $main-color;
-    padding: 0.5rem;
-    border-radius: 5px;
-    z-index: 100;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 250ms ease;
-  }
-
-  &:hover {
-    &:after {
-      opacity: 1;
-      pointer-events: all;
-    }
-  }
-}

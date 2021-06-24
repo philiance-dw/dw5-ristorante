@@ -40,10 +40,16 @@ h1::first-letter {
   font-family: "Dancing Script", cursive;
 }
 
-main {
-  padding: 4rem;
+.main__main {
   background: #575252 url("../../images/brick-wall-dark.png");
   color: #fff;
+  padding: 2rem;
+}
+
+@media (min-width: 576px) {
+  .main__main {
+    padding: 4rem;
+  }
 }
 
 .container {
@@ -64,11 +70,18 @@ main {
   gap: 4rem;
   max-width: 720px;
   margin: auto;
+  padding: 0;
 }
 
 h1 {
   color: #fff;
-  font-size: 6rem;
+  font-size: 4rem;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 6rem;
+  }
 }
 
 .image__container {
@@ -84,9 +97,15 @@ h1 {
 }
 
 .description {
-  font-size: 1.5rem;
   text-align: justify;
   line-height: 1.4;
+  font-size: 1.25rem;
+}
+
+@media (min-width: 576px) {
+  .description {
+    font-size: 1.5rem;
+  }
 }
 
 .price__container {
@@ -95,8 +114,8 @@ h1 {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;

@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Controllers\ErrorController;
 use Dotenv\Dotenv;
 use PDO;
+use PDOException;
 
 class Database {
   /**
@@ -17,9 +19,21 @@ class Database {
     $dotenv = Dotenv::createImmutable(dirname(__DIR__));
     $dotenv->load();
 
-    return new PDO("mysql:dbname=ristorante;host=localhost", $_ENV['DB_USER'], $_ENV['DB_PASS'], [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ]);
+    $pdo = null;
+
+    try {
+      $pdo = new PDO("mysql:dbname=ristorante;host=localhost", $_ENV['DB_USER'], $_ENV['DB_PASS'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      ]);
+    } catch (PDOException $e) {
+      $errorController = new ErrorController();
+      $errorController->get500($e->getMessage());
+      die();
+    }
+
+    if ($pdo) {
+      return $pdo;
+    }
   }
 }

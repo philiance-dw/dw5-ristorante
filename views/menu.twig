@@ -6,13 +6,13 @@
 
 {% block main %}
 	<div class="container">
-		<ul>
+		<ul class="main__list">
 			{% for category in categories %}
 				<li>
 					<h2>
 						{{category.getName()}}
 					</h2>
-					<ul>
+					<ul class="inner__list">
 						{% for dish in category.getDishes %}
 							<li>
 								<a href="/menu/plats/{{dish.getId()}}">{{dish.getName()}}

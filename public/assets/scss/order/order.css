@@ -8,9 +8,15 @@
   font-family: "Dancing Script", cursive;
 }
 
-main {
-  padding: 4rem;
+.main__main {
+  padding: 1rem;
   background: #575252 url("../../images/brick-wall-dark.png");
+}
+
+@media (min-width: 992px) {
+  .main__main {
+    padding: 4em;
+  }
 }
 
 .container {
@@ -18,22 +24,31 @@ main {
   margin: auto;
   width: 100%;
   color: #fbfafa;
+  padding: 0;
+  font-size: 0.6rem;
+}
+
+@media (min-width: 992px) {
+  .container {
+    font-size: 1rem;
+  }
 }
 
 .category {
-  font-size: 5rem;
-  padding: 1rem 0;
+  font-size: 5em;
+  padding: 1em 0;
   text-transform: capitalize;
 }
 
 .dish__container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2fr (1fr)[2];
-      grid-template-columns: 2fr repeat(2, 1fr);
+  gap: 2rem;
   place-items: center;
-  margin: 1rem 0;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
   padding: 1rem;
+  margin: 2em 0;
   background-color: #989191;
   width: 100%;
   border-radius: 10px;
@@ -43,11 +58,23 @@ main {
   transition: all 250ms ease;
 }
 
+@media (min-width: 768px) {
+  .dish__container {
+    margin: 1em 0;
+    gap: 0;
+    -ms-grid-columns: 2fr (1fr)[2];
+        grid-template-columns: 2fr repeat(2, 1fr);
+  }
+}
+
 .dish__container:hover {
   background-color: #b1abab;
 }
 
 .dish__name {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 /3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -61,20 +88,26 @@ main {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  gap: 1rem;
+  gap: 1em;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  justify-self: flex-start;
+}
+
+@media (min-width: 768px) {
+  .dish__name {
+    grid-column: auto;
+    justify-self: flex-start;
+  }
 }
 
 .name {
-  font-size: 3rem;
+  font-size: 3em;
 }
 
 .image {
-  height: 8rem;
-  width: 8rem;
+  height: 8em;
+  width: 8em;
   display: inline-block;
   background-size: cover;
   background-position: center;
@@ -82,10 +115,27 @@ main {
 }
 
 .size {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1em;
+}
+
+.price strong {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -99,27 +149,22 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 1rem;
-}
-
-.price strong {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
 .price input[type='number'] {
-  width: 5rem;
+  width: 4em;
   border-color: transparent;
   color: #302d2d;
+  padding: 0.75em 1em;
+  font-size: 1.1em;
 }
 
 .price button {
-  font-size: 1rem;
+  font-size: 1em;
   margin-top: 0;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5em 1.5em;
   border-radius: 5px;
 }
 /*# sourceMappingURL=order.css.map */

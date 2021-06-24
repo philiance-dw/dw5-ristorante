@@ -55,8 +55,4 @@ class MainController extends Controller {
       'data' => $_POST,
     ]);
   }
-
-  public function get404() {
-    $this->render('404.twig', ['title' => 'Page introuvable']);
-  }
 }

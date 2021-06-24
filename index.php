@@ -28,7 +28,8 @@ $router->post('/contact', 'MainController#postContact')
   ->post('/inscription', 'AuthController#postSignup');
 
 $router->setPath('/api')
-  ->post('/addCartItem', 'ApiController#postAddDishToCart');
+  ->post('/addCartItem', 'ApiController#postAddDishToCart')
+  ->delete('/cart/[i:id]', 'ApiController#removeItemFromCart');
 
 // on définit nos routes admin
 $router->setPath("/admin")

@@ -3,7 +3,7 @@
 namespace App;
 
 use AltoRouter;
-use App\Controllers\MainController;
+use App\Controllers\ErrorController;
 
 class Router extends AltoRouter {
   private $path;
@@ -58,6 +58,11 @@ class Router extends AltoRouter {
     return $this;
   }
 
+  public function delete($route, $target) {
+    $this->router->map('DELETE', $this->path . $route, $target);
+    return $this;
+  }
+
   /**
    *
    * Cette méthode permet de lancer le router et de vérifier les correspondances avec les routes prédéfinies
@@ -98,9 +103,9 @@ class Router extends AltoRouter {
       return;
     }
 
-    // on instancie le MainController et on utilise la méthode get404 pour renvoyer une page d'erreur si pas de correspondance
-    $mainController = new MainController();
-    $mainController->get404();
+    // on instancie le ErrorController et on utilise la méthode get404 pour renvoyer une page d'erreur si pas de correspondance
+    $errorController = new ErrorController();
+    $errorController->get404();
   }
 
   /**

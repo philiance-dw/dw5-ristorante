@@ -1,9 +1,13 @@
 @import '../variables';
 @import '../placeholders';
 
-main {
-  padding: 4rem;
+.main__main {
+  padding: 1rem;
   background: lighten($secondary-color, 15%) url('../../images/brick-wall-dark.png');
+
+  @include lg {
+    padding: 4em;
+  }
 }
 
 .container {
@@ -11,26 +15,39 @@ main {
   margin: auto;
   width: 100%;
   color: lighten($secondary-color, 80%);
+  padding: 0;
+  font-size: 0.6rem;
+
+  @include lg {
+    font-size: 1rem;
+  }
 }
 
 .category {
   @extend %title;
-  font-size: 5rem;
-  padding: 1rem 0;
+  font-size: 5em;
+  padding: 1em 0;
   text-transform: capitalize;
 }
 
 .dish__container {
   display: grid;
-  grid-template-columns: 2fr repeat(2, 1fr);
+  gap: 2rem;
   place-items: center;
-  margin: 1rem 0;
+  grid-template-columns: repeat(2, 1fr);
   padding: 1rem;
+  margin: 2em 0;
   background-color: lighten($secondary-color, 40%);
   width: 100%;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   transition: all 250ms ease;
+
+  @include md {
+    margin: 1em 0;
+    gap: 0;
+    grid-template-columns: 2fr repeat(2, 1fr);
+  }
 
   &:hover {
     background-color: lighten($secondary-color, 50%);
@@ -38,20 +55,25 @@ main {
 }
 
 .dish__name {
+  grid-column: 1 /3;
   @include flex(center);
-  gap: 1rem;
+  gap: 1em;
   width: fit-content;
-  justify-self: flex-start;
+
+  @include md {
+    grid-column: auto;
+    justify-self: flex-start;
+  }
 }
 
 .name {
   @extend %title;
-  font-size: 3rem;
+  font-size: 3em;
 }
 
 .image {
-  height: 8rem;
-  width: 8rem;
+  height: 8em;
+  width: 8em;
   display: inline-block;
   background-size: cover;
   background-position: center;
@@ -59,29 +81,31 @@ main {
 }
 
 .size {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .price {
-  @include flex(center, center);
-  gap: 1rem;
+  @include flex(stretch, center);
+  gap: 1em;
 
   strong {
-    display: flex;
-    font-size: 1.5rem;
+    @include flex(center, center);
+    font-size: 1.5em;
     font-weight: bold;
   }
 
   input[type='number'] {
-    width: 5rem;
+    width: 4em;
     border-color: transparent;
     color: $secondary-color;
+    padding: 0.75em 1em;
+    font-size: 1.1em;
   }
 
   button {
-    font-size: 1rem;
+    font-size: 1em;
     margin-top: 0;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5em 1.5em;
     border-radius: 5px;
   }
 }

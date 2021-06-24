@@ -11,13 +11,13 @@
 
 body {
   display: grid;
-  grid-template-rows: 6rem auto 8rem;
+  grid-template-rows: 6rem auto 10rem;
   grid-template-areas: 'header' 'main' 'footer';
 }
 
 .main__header {
   @include flex(center, space-between);
-  padding: 0 4rem;
+  padding: 0 2rem;
   background-color: $secondary-color;
   position: fixed;
   grid-area: header;
@@ -25,26 +25,18 @@ body {
   right: 0;
   left: 0;
   height: 6rem;
-}
+  z-index: 500;
 
-.nav {
-  ul {
-    @include flex(center, center);
-    gap: 1rem;
-
-    a {
-      color: $main-color;
-      transition: all 250ms ease;
-
-      &.active,
-      &:hover {
-        // color: white;
-        text-decoration: underline solid $main-color;
-        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
-      }
-    }
+  @include md {
+    padding: 0 4rem;
   }
 }
+
+.container {
+  padding: 4rem 0;
+}
+
+@import './burger';
 
 .brand {
   @include flex(center, center);
@@ -77,7 +69,7 @@ body {
   color: #fff;
 }
 
-main {
+.main__main {
   grid-area: main;
   padding: 4rem;
   background: lighten($secondary-color, 15%) url('../images/brick-wall-dark.png');
@@ -162,7 +154,14 @@ p.error {
   }
 }
 
-.page404 {
+.cgu {
+  @include flex(center, center);
+  gap: 1rem;
+  color: $main-color;
+}
+
+.page404,
+.page500 {
   @include flex(center, center);
   background: $secondary-color url('/public/assets/images/main-bg.jpg');
   height: 100%;
@@ -179,5 +178,137 @@ p.error {
       color: $main-color;
       font-family: $ristorante-first-letter-ff;
     }
+  }
+}
+
+.btn--danger {
+  background-color: rgb(175, 60, 60);
+  transition: all 150ms ease;
+  color: #fff;
+
+  &:hover {
+    background-color: lighten(rgb(175, 60, 60), 15%);
+  }
+}
+
+.btn--success {
+  background-color: rgb(22, 112, 22);
+  transition: all 150ms ease;
+  color: #fff;
+
+  &:hover {
+    background-color: lighten(rgb(22, 112, 22), 15%);
+  }
+}
+
+[data-tooltip] {
+  position: relative;
+
+  &:after {
+    @include flex(center, center);
+    min-width: 15rem;
+    top: -2rem;
+    left: 2rem;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: $secondary-color;
+    color: $main-color;
+    padding: 0.5rem;
+    border-radius: 5px;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 250ms ease;
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+[data-tooltip-left] {
+  position: relative;
+
+  &:after {
+    @include flex(center, center);
+    min-width: 15rem;
+    top: -2rem;
+    right: 2rem;
+    content: attr(data-tooltip-left);
+    position: absolute;
+    background-color: $secondary-color;
+    color: $main-color;
+    padding: 0.5rem;
+    border-radius: 5px;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 250ms ease;
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: translate(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    transform: translate(0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(100%);
+    opacity: 0;
+  }
+}
+
+#notif {
+  position: fixed;
+  top: 12.5vh;
+  z-index: 1000;
+  right: 1rem;
+  opacity: 0;
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: 2px solid;
+  cursor: default;
+  pointer-events: none;
+
+  &.hidden {
+    animation: disappear 400ms forwards ease;
+  }
+
+  &.success {
+    $color: rgb(21, 192, 21);
+    background-color: transparentize($color, 0.5);
+    color: darken($color, 35%);
+    border-color: darken($color, 10%);
+  }
+
+  &.error {
+    background-color: transparentize(rgb(168, 35, 35), 0.4);
+    color: lighten(rgb(168, 35, 35), 35%);
+    border-color: darken(rgb(168, 35, 35), 10%);
+  }
+
+  &.visible {
+    animation: appear 400ms forwards ease;
   }
 }

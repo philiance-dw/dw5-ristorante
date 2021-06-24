@@ -1,4 +1,4 @@
-main {
+.main__main {
   padding: 4rem;
   background: #575252 url("../../images/brick-wall-dark.png");
 }
@@ -22,23 +22,43 @@ main {
   max-width: 1200px;
   margin: auto;
   color: #fff;
+  padding: 0;
 }
 
-.container > ul {
+.container .main__list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-column-gap: 2rem;
+          column-gap: 2rem;
+  row-gap: 6rem;
   width: 100%;
+}
+
+.container .main__list > li {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .container .main__list > li {
+    width: 45%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container .main__list > li {
+    width: 10rem;
+  }
 }
 
 h2 {
@@ -46,13 +66,21 @@ h2 {
   font-size: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid #ffd000;
+  width: 100%;
+  text-align: center;
 }
 
 h2::first-letter {
   text-transform: uppercase;
 }
 
-li ul {
+@media (min-width: 992px) {
+  h2 {
+    width: 80%;
+  }
+}
+
+.inner__list {
   padding-top: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -70,7 +98,17 @@ li ul {
   gap: 2rem;
 }
 
-li ul a {
+.inner__list li {
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .inner__list li {
+    text-align-last: left;
+  }
+}
+
+.inner__list a {
   font-weight: bold;
   margin-bottom: 0.2rem;
   -webkit-transition: all 250ms ease;
@@ -78,7 +116,7 @@ li ul a {
   border-bottom: 2px solid transparent;
 }
 
-li ul a:hover {
+.inner__list a:hover {
   border-bottom: 2px solid #ffd000;
 }
 /*# sourceMappingURL=menu.css.map */

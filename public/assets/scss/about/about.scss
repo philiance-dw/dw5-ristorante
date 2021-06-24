@@ -1,16 +1,31 @@
 @import '../variables';
 
-main {
+.main__main {
   @include flex(center, center, column nowrap);
-  padding: 4rem;
+  padding: 2rem 1rem;
+
+  @include lg {
+    padding: 4rem;
+  }
 }
 
 .content {
-  @include flex(stretch, center);
-  gap: 8rem;
+  @include flex(stretch, center, column nowrap);
+  gap: 4rem;
+
+  @include xl {
+    flex-flow: row nowrap;
+    gap: 8rem;
+  }
 
   iframe {
-    height: 50vh;
+    width: 100%;
+    aspect-ratio: 16 /9;
+
+    @include xl {
+      min-height: 50%;
+      width: 50%;
+    }
   }
 
   & > * {
@@ -20,6 +35,11 @@ main {
 
 .description {
   font-family: $text-ff;
+  width: 100%;
+
+  @include xl {
+    width: 50%;
+  }
 
   h1 {
     font-size: 2rem;

@@ -1,6 +1,6 @@
 @import '../variables';
 
-main {
+.main__main {
   padding: 4rem;
   background: lighten($secondary-color, 15%) url('../../images/brick-wall-dark.png');
 }
@@ -12,10 +12,25 @@ main {
   max-width: 1200px;
   margin: auto;
   color: #fff;
+  padding: 0;
 
-  & > ul {
-    @include flex(stretch, space-between);
+  .main__list {
+    @include flex(stretch, space-between, row wrap);
+    column-gap: 2rem;
+    row-gap: 6rem;
     width: 100%;
+
+    & > li {
+      width: 100%;
+
+      @include sm {
+        width: 45%;
+      }
+
+      @include lg {
+        width: 10rem;
+      }
+    }
   }
 }
 
@@ -24,27 +39,39 @@ h2 {
   font-size: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid $main-color;
+  width: 100%;
+  text-align: center;
 
   &::first-letter {
     text-transform: uppercase;
   }
+
+  @include lg {
+    width: 80%;
+  }
 }
 
-li {
-  ul {
-    padding-top: 2rem;
-    @include flex(stretch, flex-start, column nowrap);
-    gap: 2rem;
+.inner__list {
+  padding-top: 2rem;
+  @include flex(stretch, flex-start, column nowrap);
+  gap: 2rem;
 
-    a {
-      font-weight: bold;
-      margin-bottom: 0.2rem;
-      transition: all 250ms ease;
-      border-bottom: 2px solid transparent;
+  li {
+    text-align: center;
 
-      &:hover {
-        border-bottom: 2px solid $main-color;
-      }
+    @include lg {
+      text-align-last: left;
+    }
+  }
+
+  a {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    transition: all 250ms ease;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-bottom: 2px solid $main-color;
     }
   }
 }

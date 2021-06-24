@@ -42,7 +42,7 @@
   }
 }
 
-main {
+.main__main {
   padding: 0;
   background-color: #302d2d;
 }
@@ -86,11 +86,18 @@ main {
           transform: scale(0);
   line-height: 2;
   max-width: 400px;
-  text-align: center;
+  width: 90%;
+  text-align: justify;
   font-size: 1.25rem;
   font-weight: 600;
   -webkit-animation: title-appear 1s 1s forwards ease;
           animation: title-appear 1s 1s forwards ease;
+}
+
+@media (min-width: 768px) {
+  .container p {
+    text-align: center;
+  }
 }
 
 .container a {

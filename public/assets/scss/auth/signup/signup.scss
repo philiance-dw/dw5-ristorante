@@ -1,9 +1,13 @@
 @import '../common';
 
 form > div.input__group {
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 4rem;
+  width: 100%;
+
+  @include md {
+    gap: 4rem;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 
   & > div {
     @include flex(stretch, center, column nowrap);

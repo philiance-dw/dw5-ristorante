@@ -3,30 +3,66 @@
 
 {% block head %}
 	<link rel="stylesheet" href="/public/assets/scss/cart/cart.css">
+	<script src="/public/assets/js/cart.js" defer></script>
 {% endblock %}
 
 {% block main %}
 	<div class="container">
+
+		<div id="modal">
+			<form>
+				<h3>Voulez vous vraiment supprimer "<span id="dish-name"></span>"?</h3>
+				<div class="btn__container">
+					<button id="cancel-button" class="btn--danger" type="button">Annuler</button>
+					<button id="delete-button" class="btn--success" type="submit">Valider</button>
+				</div>
+			</form>
+		</div>
+
 		<ul>
-			{% for item in cart.getItems() %}
-				<li>
-					<div class="image__container">
-						<img src="{{item.getImageUrl()}}" alt="">
-					</div>
-					<p>
-						{{item.getName()}}
-					</p>
-					<p>
-						{{item.getQuantity()}}
-					</p>
-					<p>
-						{{item.getQuantity() * item.getPrice()}}€
-					</p>
+			<li>
+				<ul>
+					{% for item in cart.getItems() %}
+						<li data-dish-id="{{item.getId()}}" class="list__child">
+							<div class="image__container">
+								<img src="{{item.getImageUrl()}}" alt="">
+								<span>
+									{{item.getName()}}
+								</span>
+							</div>
+							<div class="price__container">
+								<div class="size">{{item.getSize()}}</div>
+								<div class="quantity__container">
+									<input type="number" min="1" max="20" name="quantity" value="{{item.getQuantity()}}">
+									<span data-tooltip-left="supprimer du panier" class="ristorante-trash"></span>
+								</div>
+								<strong class="price">
+									<span class="real__price">
+										{{item.getQuantity() * item.getPrice()}}
+									</span>
+									€
+								</strong>
+							</div>
+
+							<input type="hidden" name="item__price" value="{{item.getPrice()}}">
+							<input type="hidden" name="item__id" value="{{item.getId()}}">
+							<input type="hidden" name="item__name" value="{{item.getName()}}">
+						</li>
+					{% endfor %}
+
+				</ul>
+			</li>
+			{% if totalPrice %}
+				<li class="list__child">
+					<span class="total-price">Total:
+						<strong>
+							<span class="real__price">
+								{{totalPrice}}
+							</span>
+							€</strong>
+					</span>
 				</li>
-			{% endfor %}
+			{% endif %}
 		</ul>
-		{% if totalPrice %}
-			<strong>{{totalPrice}}€</strong>
-		{% endif %}
 	</div>
 {% endblock %}

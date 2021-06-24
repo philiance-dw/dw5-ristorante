@@ -1,11 +1,14 @@
 @import '../variables';
 @import '../placeholders';
 
-main {
-  padding: 4rem;
+.main__main {
   background: lighten($secondary-color, 15%) url('../../images/brick-wall-dark.png');
-  // color: $main-color;
   color: #fff;
+  padding: 2rem;
+
+  @include sm {
+    padding: 4rem;
+  }
 }
 
 .container {
@@ -14,12 +17,17 @@ main {
   gap: 4rem;
   max-width: 720px;
   margin: auto;
+  padding: 0;
 }
 
 h1 {
   @extend %title;
   color: #fff;
-  font-size: 6rem;
+  font-size: 4rem;
+
+  @include sm {
+    font-size: 6rem;
+  }
 }
 
 .image__container {
@@ -34,13 +42,17 @@ h1 {
 }
 
 .description {
-  font-size: 1.5rem;
   text-align: justify;
   line-height: 1.4;
+  font-size: 1.25rem;
+
+  @include sm {
+    font-size: 1.5rem;
+  }
 }
 
 .price__container {
-  @include flex(center, center);
+  @include flex(center, center, row wrap);
   gap: 2rem;
 }
 
