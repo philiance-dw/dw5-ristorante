@@ -8,16 +8,26 @@ use App\Models\Dish;
 use App\Router;
 
 class DishController extends Controller {
+
   public function getDishes() {
-    $dishes = Dish::find(['include' => ['categories']]);
+    [
+      'limit' => $limit,
+      'offset' => $offset,
+      'page' => $page,
+      'nbPages' => $nbPages,
+    ] = Router::paginate(Dish::class);
+
+    $findParams = ['include' => ['categories'], 'limit' => $limit, 'offset' => $offset];
+
+    $dishes = Dish::find($findParams);
 
     $content = [];
 
     foreach ($dishes as $dish) {
       $id = $dish->getId();
       $action = <<< EOL
-							<a data-tooltip="cliquer pour modifier" class="ristorante-edit" href="/admin/plats/modifier/$id"></a>
-							<a data-tooltip="cliquer pour supprimer" class="ristorante-trash" href="/admin/plats/supprimer/$id"></a>
+							<a data-tooltip-left="cliquer pour modifier" class="ristorante-edit" href="/admin/plats/modifier/$id"></a>
+							<a data-tooltip-left="cliquer pour supprimer" class="ristorante-trash" href="/admin/plats/supprimer/$id"></a>
 			EOL;
 
       $content[] = [
@@ -39,6 +49,8 @@ class DishController extends Controller {
       'datas' => $content,
       'entity' => 'plats',
       'linkText' => 'Ajouter un plat',
+      'nbPages' => $nbPages,
+      'page' => $page,
     ]);
   }
 

@@ -3,7 +3,7 @@
     display: none;
 
     &:checked ~ ul {
-      height: 11rem;
+      height: 22rem;
     }
 
     &:checked + label {
@@ -28,7 +28,7 @@
 
   ul {
     @include flex(center, center, column nowrap);
-    gap: 1rem;
+    gap: 2rem;
     position: absolute;
     height: 0;
     left: 0;
@@ -39,7 +39,8 @@
     overflow: hidden;
     transition: all 300ms ease;
 
-    @include md {
+    @include lg {
+      gap: 1rem;
       padding: 0;
       flex-flow: row wrap;
       position: static;
@@ -68,7 +69,7 @@
   position: relative;
   font-size: 2.5rem;
 
-  @include md {
+  @include lg {
     display: none;
   }
 

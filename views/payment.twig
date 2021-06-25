@@ -1,0 +1,30 @@
+{% extends "layout/main.twig" %}
+
+{% block head %}
+	<link
+	rel="stylesheet" href="/public/assets/scss/payment/payment.css">
+
+	<!-- Stripe JS -->
+	<script src="https://js.stripe.com/v3/"></script>
+	<script src="/public/assets/js/stripe.js" defer></script>
+{% endblock %}
+
+
+{% block main %}
+	<form method="POST" action="/commander/payer" id="payment-form">
+		<h1>Confirmation Paiement</h1>
+		<div class="form-row">
+			<div>
+				<label for="card-element">Numero de la carte</label>
+				<div
+					id="card-element"><!-- a Stripe Element will be inserted here. -->
+				</div>
+			</div>
+			<!-- Used to display form errors -->
+			<div id="card-errors"></div>
+		</div>
+		<button class="btn" type="submit">Payer
+			{{amountToPay ~ "€"}}</button>
+		<input type="hidden" name="amountToPay" value="{{amountToPay}}">
+	</form>
+{% endblock %}

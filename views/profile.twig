@@ -1,0 +1,51 @@
+{% extends "layout/main.twig" %}
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/profile/profile.css">
+{% endblock %}
+
+{% block main %}
+	<h1>Mon compte</h1>
+
+	<section>
+		{% for order in user.getOrders() %}
+			<table>
+				<caption>
+					numéro de commande:
+					{{order.getId()}}
+				</caption>
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Quantité</th>
+						<th>Prix</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in order.getItems() %}
+						<tr>
+							<td>
+								{{item.getName()}}
+							</td>
+							<td>
+								{{item.getQuantity()}}
+							</td>
+							<td>
+								{{item.getQuantity() * item.getPrice()}}€
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>Prix total</td>
+						<td></td>
+						<td>
+							{{order.getTotalPrice}}€
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		{% endfor %}
+	</section>
+{% endblock %}

@@ -69,7 +69,6 @@ CREATE TABLE `cart_items` (
 
 LOCK TABLES `cart_items` WRITE;
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
-INSERT INTO `cart_items` VALUES (1,2,1,'2021-06-23 16:24:35',NULL),(1,6,2,'2021-06-23 16:24:41',NULL),(1,10,1,'2021-06-23 16:24:47',NULL),(1,13,1,'2021-06-23 16:24:45',NULL),(1,14,1,'2021-06-23 16:24:44',NULL);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +87,7 @@ CREATE TABLE `carts` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +96,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,1,'2021-06-23 10:52:53',NULL);
+INSERT INTO `carts` VALUES (1,1,'2021-06-23 10:52:53',NULL),(2,2,'2021-06-25 09:22:56',NULL);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +113,7 @@ CREATE TABLE `categories` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +122,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'entrées','2021-06-22 08:53:57',NULL),(2,'plats','2021-06-22 08:53:57',NULL),(3,'desserts','2021-06-22 08:53:57','2021-06-22 12:21:35'),(4,'boissons','2021-06-22 08:53:57',NULL),(5,'test','2021-06-22 12:21:53',NULL);
+INSERT INTO `categories` VALUES (1,'entrées','2021-06-22 08:53:57',NULL),(2,'plats','2021-06-22 08:53:57',NULL),(3,'desserts','2021-06-22 08:53:57','2021-06-22 12:21:35'),(4,'boissons','2021-06-22 08:53:57',NULL),(5,'test','2021-06-22 12:21:53',NULL),(6,'rhndrjiuhdrjiuhdr','2021-06-25 09:06:08',NULL),(7,'jyjtfjtj','2021-06-25 10:17:59',NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +147,7 @@ CREATE TABLE `dishes` (
   UNIQUE KEY `name` (`name`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `dishes_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,6 +214,7 @@ CREATE TABLE `order_details` (
 
 LOCK TABLES `order_details` WRITE;
 /*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+INSERT INTO `order_details` VALUES (1,6,1,'2021-06-25 16:54:15',NULL),(2,4,1,'2021-06-25 15:52:20',NULL),(2,6,3,'2021-06-25 16:54:15',NULL),(3,5,1,'2021-06-25 16:18:35',NULL),(3,6,3,'2021-06-25 16:54:15',NULL),(4,4,1,'2021-06-25 15:52:20',NULL),(5,4,1,'2021-06-25 15:52:20',NULL),(5,6,2,'2021-06-25 16:54:15',NULL),(6,4,1,'2021-06-25 15:52:20',NULL),(6,6,1,'2021-06-25 16:54:15',NULL),(7,6,3,'2021-06-25 16:54:15',NULL),(8,6,1,'2021-06-25 16:54:15',NULL),(9,6,1,'2021-06-25 16:54:15',NULL),(10,4,1,'2021-06-25 15:52:20',NULL),(11,4,1,'2021-06-25 15:52:20',NULL),(11,6,3,'2021-06-25 16:54:15',NULL),(12,6,1,'2021-06-25 16:54:15',NULL),(13,4,2,'2021-06-25 15:52:20',NULL),(14,6,2,'2021-06-25 16:54:15',NULL),(15,6,1,'2021-06-25 16:54:15',NULL),(18,5,1,'2021-06-25 16:18:35',NULL),(18,6,6,'2021-06-25 16:54:15',NULL);
 /*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +235,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,6 +244,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (4,'reçu','visa',1,'2021-06-25 15:52:20',NULL),(5,'reçu','visa',1,'2021-06-25 16:18:35',NULL),(6,'reçu','visa',1,'2021-06-25 16:54:15',NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +295,7 @@ CREATE TABLE `products` (
   UNIQUE KEY `name` (`name`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +363,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -371,7 +372,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John','Doe','0123456789','4 rue du test','testville','testpays','75001','test@test.com','$2y$14$MvQ8WCwDVeJbr36FUzP32.dn6hWOVVVR6rbe8mNX9NiFsr9WDFAeW',1,'2021-06-22 08:53:57',NULL);
+INSERT INTO `users` VALUES (1,'John','Doe','0123456789','4 rue du test','testville','testpays','75001','test@test.com','$2y$14$MvQ8WCwDVeJbr36FUzP32.dn6hWOVVVR6rbe8mNX9NiFsr9WDFAeW',1,'2021-06-22 08:53:57',NULL),(2,'jack','Doe','0123456789','3 rue du test','testville','France','57489','test@test.fr','$2y$14$r0wyc9KXaSDLXC3.pwHLGOtNNHe32UK8bBldN2GONdxL4Jk9zBU86',0,'2021-06-25 09:22:56',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -384,4 +385,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-23 16:39:29
+-- Dump completed on 2021-06-25 17:03:46

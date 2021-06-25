@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Database;
 use DateTime;
 use PDO;
+use PDOException;
 use ReflectionClass;
 use ReflectionProperty;
 
@@ -58,14 +59,40 @@ abstract class Model {
     return $objArray;
   }
 
-  public static function find() {
+  public static function count() {
     $class = get_called_class();
     $obj = new $class();
     $table = $obj->getTable();
     $pdo = Database::getConnection();
 
-    $statement = $pdo->query("SELECT * FROM $table;");
+    $statement = $pdo->query("SELECT count(*) FROM $table;");
     $statement->execute();
+    return $statement->fetch(PDO::FETCH_COLUMN);
+  }
+
+  public static function find(array $params = []) {
+    $class = get_called_class();
+    $obj = new $class();
+    $table = $obj->getTable();
+    $pdo = Database::getConnection();
+
+    $limit = $params['limit'] ?? null;
+    $offset = $params['offset'] ?? null;
+
+    $queryParams = [];
+
+    $query = "SELECT * FROM $table";
+
+    if ($limit) {
+      $query .= " LIMIT $limit";
+    }
+
+    if ($offset) {
+      $query .= " OFFSET $offset";
+    }
+
+    $statement = $pdo->prepare($query);
+    $statement->execute($queryParams);
     return $statement->fetchAll(PDO::FETCH_CLASS, $obj::class);
   }
 
@@ -173,6 +200,16 @@ abstract class Model {
     $obj = new $class();
     $table = $obj->getTable();
     $pdo = Database::getConnection();
+
+    try {
+      // on recupere l'addresse ou est stockée l'image
+      $statement = $pdo->prepare("SELECT image_url FROM $table WHERE id=:id");
+      $statement->execute(['id' => htmlentities($id)]);
+      $imageUrl = $statement->fetch(PDO::FETCH_COLUMN);
+
+      // on supprime l'image associée
+      unlink(dirname(dirname(__DIR__)) . $imageUrl);
+    } catch (PDOException $e) {}
 
     $statement = $pdo->prepare("DELETE FROM $table WHERE id=:id;");
     $statement->execute(['id' => htmlentities($id)]);

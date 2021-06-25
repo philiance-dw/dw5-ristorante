@@ -1,0 +1,84 @@
+@import '../variables';
+@import '../placeholders';
+
+.main__main {
+  padding: 1rem;
+
+  @include sm {
+    padding: 2rem;
+  }
+
+  @include md {
+    padding: 4rem;
+  }
+}
+
+h1 {
+  @extend %title;
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: 4rem;
+}
+
+section {
+  @include flex(flex-start, center, row wrap);
+  gap: 4rem;
+
+  @include lg {
+    justify-content: flex-start;
+  }
+
+  table {
+    width: 60%;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    font-size: 1.15rem;
+    color: $secondary-color;
+
+    @include lg {
+      width: 20rem;
+    }
+  }
+
+  caption {
+    cursor: default;
+    background-color: $secondary-color;
+    color: $main-color;
+    padding: 1rem;
+  }
+
+  tr {
+    cursor: default;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  }
+
+  thead {
+    tr {
+      background-color: darken($main-color, 10%);
+    }
+  }
+
+  th,
+  td {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background-color: rgba(155, 155, 155, 0.9);
+      }
+      &:nth-of-type(even) {
+        background-color: rgba(212, 212, 212, 0.7);
+      }
+    }
+  }
+
+  tfoot {
+    tr {
+      background-color: $secondary-color;
+      color: $main-color;
+    }
+  }
+}

@@ -3,7 +3,7 @@
 {% import "macros/forms.twig" as form %}
 
 {% block main %}
-	<form method="POST">
+	<form class="add-item-form" method="POST">
 		{{form.input('name', data.name, 'Nom', 'categoryName', 'Le nom de la catégorie', errors.name, 'text', true)}}
 		<button class="btn">{{editMode ? 'Modifier': 'Ajouter'}}</button>
 	</form>

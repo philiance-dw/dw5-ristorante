@@ -1,0 +1,79 @@
+{% extends "layout/main.twig" %}
+
+
+{% block head %}
+	<link rel="stylesheet" href="/public/assets/scss/cart/cart.css">
+{% endblock %}
+
+{% import "macros/forms.twig" as form %}
+
+
+{% block main %}
+
+	<div class="cart-confirm__container">
+
+		<section>
+			<h2>Informations personnelles</h2>
+			<div class="content">
+				<div class="input__group">
+					{{form.input('firstName', user.getFirstName, 'Prénom', 'firstName', '', errors.firstName)}}
+					{{form.input('lastName', user.getLastName, 'Nom', 'lastName', '', errors.lastName)}}
+				</div>
+				<div class="input__group">
+					{{form.input('address', user.getAddress, 'Adresse', 'address', '', errors.address)}}
+					{{form.input('city', user.getCity, 'Ville', 'city', '', errors.city)}}
+				</div>
+				<div class="input__group">
+					{{form.input('country', user.getCountry, 'Pays', 'country', '', errors.country)}}
+					{{form.input('postalCode', user.getPostalCode, 'Code postal', 'postalCode', '', errors.postalCode)}}
+				</div>
+				<div class="input__group">
+					{{form.input('email', user.getEmail, 'Email', 'email', '', errors.email, 'email')}}
+					{{form.input('phone', user.getPhone, 'Numéro de téléphone', 'phone', '', errors.phone, 'tel')}}
+				</div>
+			</div>
+		</section>
+		<section>
+			<div>
+				<h2>Récapitulatif du panier</h2>
+				<div class="content">
+					<ul>
+						{% for item in user.getCart().getItems() %}
+							<li data-dish-id="{{item.getId()}}" class="list__child">
+								<div class="image__container">
+									<img src="{{item.getImageUrl()}}" alt="">
+									<span>
+										{{item.getName()}}
+									</span>
+								</div>
+								<div class="price__container">
+									<div class="size">{{item.getSize()}}</div>
+									<div class="quantity__container">
+										<span>{{item.getQuantity()}}</span>
+									</div>
+									<strong class="price">
+										<span class="real__price">
+											{{item.getQuantity() * item.getPrice()}}
+										</span>
+										€
+									</strong>
+								</div>
+
+								<input type="hidden" name="item__price" value="{{item.getPrice()}}">
+								<input type="hidden" name="item__id" value="{{item.getId()}}">
+								<input type="hidden" name="item__name" value="{{item.getName()}}">
+							</li>
+						{% endfor %}
+
+					</ul>
+
+				</div>
+			</div>
+			<form method="POST" action="/commander/confirmation">
+				<button class="btn" type="submit">Confirmer</button>
+			</form>
+		</section>
+
+	</div>
+
+{% endblock %}

@@ -18,9 +18,15 @@ abstract class Controller {
 
     $baseUri = $_SERVER['REQUEST_URI'];
 
-    $uri = explode('/', $baseUri);
+    $baseUriArr = explode('/', $baseUri);
+    $uri = $baseUriArr[1];
 
-    $uri = array_pop($uri);
+    if (sizeof($baseUriArr) >= 1) {
+      $uri = $baseUriArr[sizeof($baseUriArr) - 1];
+      if (!$uri) {
+        $uri = $baseUriArr[sizeof($baseUriArr) - 2];
+      }
+    }
 
     $pageName = empty($uri) ? 'home' : $uri;
     $twig->addGlobal('pageName', $pageName);

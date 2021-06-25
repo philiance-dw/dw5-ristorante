@@ -1,6 +1,20 @@
 @import '../variables';
 @import '../placeholders';
 
+.main__main {
+  padding: 2rem;
+
+  @include md {
+    padding: 4rem;
+  }
+}
+
+.nothing {
+  @extend %title;
+  font-size: 4rem;
+  text-align: center;
+}
+
 .container {
   @include flex(stretch, flex-start, column nowrap);
   gap: 4rem;
@@ -16,21 +30,28 @@
     @include flex(stretch, space-between, column nowrap);
     height: 100%;
   }
+}
+.list__child {
+  @include flex(center, space-between, column nowrap);
+  padding: 1.5em 0;
+  border-bottom: 2px solid transparentize($secondary-color, 0.5);
+  gap: 2rem;
 
-  .list__child {
-    @include flex(center, space-between, column nowrap);
-    padding: 1.5em 0;
-    border-bottom: 2px solid transparentize($secondary-color, 0.5);
-    gap: 2rem;
+  &:last-of-type {
+    border-bottom: none;
+    align-self: flex-end;
+  }
 
-    &:last-of-type {
-      border-bottom: none;
-      align-self: flex-end;
-    }
+  @include md {
+    flex-flow: row nowrap;
+    gap: 0;
 
-    @include md {
-      flex-flow: row nowrap;
-      gap: 0;
+    &.order {
+      gap: 2rem;
+
+      .btn {
+        margin-top: 0;
+      }
     }
   }
 }
@@ -146,5 +167,88 @@
   strong {
     font-weight: bold;
     font-size: 1.5em;
+  }
+}
+
+.cart-confirm__container {
+  @include flex(center, center, column nowrap);
+  height: 100%;
+  gap: 4rem;
+
+  @include xl {
+    flex-flow: row nowrap;
+  }
+
+  & > section {
+    height: 100%;
+    width: 100%;
+
+    &:last-of-type {
+      @include flex(stretch, space-between, column nowrap);
+
+      form {
+        align-self: flex-end;
+      }
+    }
+
+    h2 {
+      @extend %title;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .content {
+      @include flex(stretch, center, column nowrap);
+      gap: 2rem;
+    }
+
+    .input__group {
+      @include flex(center, space-around, column nowrap);
+      gap: 2rem;
+
+      @include md {
+        flex-direction: row;
+      }
+
+      .input {
+        width: 100%;
+        max-width: 25rem;
+      }
+
+      .input__container {
+        @include flex(stretch, center, column nowrap);
+        gap: 1rem;
+        color: #fff;
+
+        input {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+
+  .image__container {
+    width: 5rem;
+
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    span {
+      @extend %title;
+      font-size: 2em;
+    }
+  }
+
+  .size {
+    font-size: 1.2rem;
+  }
+
+  .quantity__container {
+    span {
+      font-size: 1.4rem;
+    }
   }
 }

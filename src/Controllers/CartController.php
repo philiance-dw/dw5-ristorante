@@ -27,6 +27,28 @@ class CartController extends Controller {
     $this->render('cart.twig', ['title' => 'Panier', 'cart' => $cart, 'totalPrice' => $totalPrice]);
   }
 
+  public function getConfirmationPage() {
+    $user = unserialize($_SESSION['user']);
+    $user->populateCart();
+
+    $cart = $user->getCart();
+
+    $totalPrice = null;
+
+    $items = $cart->getItems();
+
+    if ($items) {
+      $totalPrice = 0;
+
+      foreach ($items as $item) {
+        $itemPrice = $item->getPrice() * $item->getQuantity();
+        $totalPrice += $itemPrice;
+      }
+    }
+
+    $this->render('cart-confirm.twig', ['title' => 'Confirmation panier', 'user' => $user, 'totalPrice' => $totalPrice]);
+  }
+
   public function postAddDishToCart(int $id) {
     $quantity = (int) $_POST['quantity'];
 

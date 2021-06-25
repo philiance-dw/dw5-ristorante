@@ -21,6 +21,13 @@
 					<a href="/" class="brand--text">Ristorante</a>
 				</div>
 				<nav class="nav">
+					<input type="checkbox" id="burger">
+					<label class="burger" for="burger">
+						<div class="ristorante-fork"></div>
+						<div class="ristorante-spoon"></div>
+						<div class="ristorante-knife"></div>
+					</label>
+
 					<ul>
 						<li><a href="/admin/accueil"class="{{ pageName == 'accueil' ? 'active' : '' }}">Accueil</a></li>
 						<li><a href="/admin/categories"class="{{ pageName == 'categories' ? 'active' : '' }}">Catégories</a></li>

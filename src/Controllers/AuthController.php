@@ -9,7 +9,6 @@ use App\Router;
 
 class AuthController extends Controller {
   public function getConnection() {
-    Router::redirectLoggedUserToHome();
     $this->render('auth/login.twig', [
       'title' => 'Connexion',
     ]);
@@ -40,7 +39,6 @@ class AuthController extends Controller {
   }
 
   public function getSignup() {
-    Router::redirectLoggedUserToHome();
     $this->render('auth/signup.twig', ['title' => 'Inscription']);
   }
 

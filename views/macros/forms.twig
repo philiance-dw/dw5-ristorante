@@ -1,5 +1,5 @@
 {% macro input(name, value, label, id, placeholder, errorMessage, type = 'text', autofocus = false) %}
-	<div>
+	<div class="input">
 		<div class="input__container">
 			<label for="{{id}}">{{label}}</label>
 			<input {{autofocus ? 'autofocus' : ''}} id="{{id}}" name="{{name}}" type="{{type ?? 'text'}}" placeholder="{{placeholder}}" value="{{value}}">
@@ -12,13 +12,15 @@
 
 
 {% macro textarea(name, value, label, id, placeholder, errorMessage) %}
-	<div>
-		<label for="{{id}}">{{label}}</label>
-		<textarea id="{{id}}" name="{{name}}" placeholder="{{placeholder}}">{{value}}</textarea>
+	<div class="input">
+		<div class="input__container">
+			<label for="{{id}}">{{label}}</label>
+			<textarea id="{{id}}" name="{{name}}" placeholder="{{placeholder}}">{{value}}</textarea>
+		</div>
+		{% if errorMessage %}
+			<p class="error">{{errorMessage}}</p>
+		{% endif %}
 	</div>
-	{% if errorMessage %}
-		<p class="error">{{errorMessage}}</p>
-	{% endif %}
 
 
 {% endmacro %}

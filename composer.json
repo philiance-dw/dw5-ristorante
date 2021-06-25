@@ -5,7 +5,8 @@
     "altorouter/altorouter": "^2.0",
     "twig/twig": "^3.3",
     "symfony/var-dumper": "^5.3",
-    "ramsey/uuid": "^4.1"
+    "ramsey/uuid": "^4.1",
+    "stripe/stripe-php": "^7.85"
   },
   "authors": [
     {

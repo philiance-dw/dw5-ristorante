@@ -21,18 +21,17 @@ class Dish extends Model {
 
   public static function find(array $params = []): array{
     $pdo = Database::getConnection();
-
-    if (empty($params)) {
-      $statement = $pdo->query("SELECT * FROM dishes");
-      $statement->execute();
-      return $statement->fetchAll(PDO::FETCH_CLASS, Dish::class);
-    }
-
     $include = $params['include'] ?? null;
+    $limit = $params['limit'] ?? null;
+    $offset = $params['offset'] ?? null;
+
+    $select = "SELECT * FROM dishes";
+    $query = $select;
+    $queryParams = [];
 
     if ($include) {
       if (in_array('categories', $include)) {
-        $query = <<< EOL
+        $select = <<< EOL
 				SELECT d.id,
 					d.name,
 					d.size,
@@ -45,16 +44,24 @@ class Dish extends Model {
 					c.name AS category_name
 				FROM dishes AS d
 				JOIN categories AS c
-				ON d.category_id = c.id;
+				ON d.category_id = c.id
 				EOL;
 
-        $statement = $pdo->query($query);
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS, Dish::class);
+        $query = $select;
       }
     }
 
-    return [];
+    if ($limit) {
+      $query .= " LIMIT $limit";
+    }
+
+    if ($offset) {
+      $query .= " OFFSET $offset";
+    }
+
+    $statement = $pdo->prepare($query);
+    $statement->execute($queryParams);
+    return $statement->fetchAll(PDO::FETCH_CLASS, Dish::class);
   }
 
   public function getName() {

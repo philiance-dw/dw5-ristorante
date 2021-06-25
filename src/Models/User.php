@@ -24,6 +24,8 @@ class User extends Model {
   private $is_admin = false;
   private $cart;
 
+  private $orders;
+
   public function __construct() {
     $this->table = 'users';
   }
@@ -116,6 +118,14 @@ class User extends Model {
     return $this;
   }
 
+  public function getOrders() {
+    return $this->orders;
+  }
+  public function setOrders(array $orders) {
+    $this->orders = $orders;
+    return $this;
+  }
+
   public function populateCart() {
     $pdo = Database::getConnection();
     $statement = $pdo->prepare("SELECT * FROM carts WHERE user_id=:id");
@@ -126,6 +136,24 @@ class User extends Model {
       $cart = $cart[0];
       $cart->populateItems();
       $this->setCart($cart);
+    }
+  }
+
+  public function populateOrders() {
+    $pdo = Database::getConnection();
+    $statement = $pdo->prepare("SELECT * FROM orders WHERE user_id=:id");
+    $statement->execute([':id' => $this->getId()]);
+    $orders = $statement->fetchAll(PDO::FETCH_CLASS, Order::class);
+
+    if ($orders) {
+      $populatedOrders = [];
+
+      foreach ($orders as $order) {
+        $order->populateItems();
+        $populatedOrders[] = $order;
+      }
+
+      $this->setOrders($populatedOrders);
     }
   }
 }

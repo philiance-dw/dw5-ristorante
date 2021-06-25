@@ -1,0 +1,107 @@
+h1 {
+  font-family: "Parisienne", cursive;
+  letter-spacing: 1px;
+}
+
+h1::first-letter {
+  color: #ffd000;
+  font-family: "Dancing Script", cursive;
+}
+
+.main__main {
+  padding: 1rem;
+}
+
+@media (min-width: 576px) {
+  .main__main {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main__main {
+    padding: 4rem;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: 4rem;
+}
+
+section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 4rem;
+}
+
+@media (min-width: 992px) {
+  section {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+section table {
+  width: 60%;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+          box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  font-size: 1.15rem;
+  color: #302d2d;
+}
+
+@media (min-width: 992px) {
+  section table {
+    width: 20rem;
+  }
+}
+
+section caption {
+  cursor: default;
+  background-color: #302d2d;
+  color: #ffd000;
+  padding: 1rem;
+}
+
+section tr {
+  cursor: default;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+section thead tr {
+  background-color: #cca600;
+}
+
+section th,
+section td {
+  padding: 1rem;
+  text-align: left;
+}
+
+section tbody tr:nth-of-type(odd) {
+  background-color: rgba(155, 155, 155, 0.9);
+}
+
+section tbody tr:nth-of-type(even) {
+  background-color: rgba(212, 212, 212, 0.7);
+}
+
+section tfoot tr {
+  background-color: #302d2d;
+  color: #ffd000;
+}
+/*# sourceMappingURL=profile.css.map */

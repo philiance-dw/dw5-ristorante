@@ -1,0 +1,73 @@
+@import '../variables';
+
+.main__main {
+  padding: 2rem;
+
+  @include md {
+    padding: 4rem;
+  }
+}
+
+#payment-form {
+  @include flex(stretch, flex-start, column nowrap);
+  gap: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+
+    @include md {
+      font-size: 2rem;
+    }
+  }
+
+  .form-row > div {
+    @include flex(stretch, flex-start, column nowrap);
+    gap: 1rem;
+
+    label {
+      font-size: 1.25rem;
+    }
+  }
+
+  .btn {
+    @include lg {
+      width: fit-content;
+      align-self: flex-end;
+    }
+  }
+}
+
+.StripeElement {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.error {
+  margin: 1rem 0;
+  color: #5f1616;
+  padding: 1rem;
+  background-color: #c1797987;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #7a2727;
+}

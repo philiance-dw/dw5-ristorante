@@ -6,12 +6,13 @@
   min-height: 100vh;
   display: grid;
   grid-template-rows: 10rem auto;
+  padding: 0;
 }
 
 .admin__header {
+  @include flex(center, space-between);
   height: 10rem;
-  display: grid;
-  grid-template-columns: 15rem auto;
+
   align-items: center;
   padding: 0 2rem;
   background-color: $secondary-color;
@@ -30,12 +31,23 @@
   }
 
   ul {
-    justify-content: flex-end;
+    top: 9.5rem;
+    left: 0;
+    right: 0;
+
+    @include md {
+      justify-content: flex-end;
+      background-image: none;
+    }
   }
 }
 
 .admin__main {
-  padding: 4rem;
+  padding: 0;
+
+  @include md {
+    padding: 4rem;
+  }
 }
 
 .admin__container {
@@ -50,12 +62,57 @@
   }
 }
 
+.add-item-form {
+  @include flex(center, center, column nowrap);
+  gap: 2rem;
+  margin: auto;
+  width: 90%;
+  max-width: 600px;
+
+  input,
+  textarea,
+  select {
+    border: none;
+    background-color: $secondary-color;
+    color: $main-color;
+
+    &::placeholder {
+      color: transparentize(darken($main-color, 10%), 0.6);
+    }
+  }
+
+  select {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1.1rem;
+  }
+
+  & > div {
+    width: 100%;
+  }
+
+  .input__container {
+    @include flex(stretch, center, column nowrap);
+    gap: 1rem;
+  }
+
+  input[type='file'] {
+    width: 100%;
+  }
+}
+
 table {
   caption {
     padding: 1rem;
     font-size: 1.5rem;
     background-color: $secondary-color;
     color: $main-color;
+    border-top: 4px solid $main-color;
+
+    @include md {
+      border-top: none;
+    }
   }
 
   width: 100%;
@@ -83,4 +140,33 @@ table {
 
 .btn {
   @extend %btn;
+  font-size: 1rem;
+  margin-right: 2rem;
+  margin-top: 0;
+
+  @include md {
+    margin-right: 0;
+  }
+}
+
+.pagination {
+  @include flex(center, center);
+  gap: 1rem;
+  margin: 2rem;
+
+  @include md {
+    margin: 0;
+  }
+
+  a {
+    background-color: transparent;
+    color: $secondary-color;
+    padding: 0.5rem;
+    border: 1px solid;
+    border-radius: 5px;
+
+    &.active {
+      background-color: $main-color;
+    }
+  }
 }

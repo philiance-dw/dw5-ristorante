@@ -8,15 +8,22 @@ use App\Router;
 
 class CategoryController extends Controller {
   public function getCategories() {
-    $categories = Category::find();
+    [
+      'limit' => $limit,
+      'offset' => $offset,
+      'page' => $page,
+      'nbPages' => $nbPages,
+    ] = Router::paginate(Category::class);
+
+    $categories = Category::find(['limit' => $limit, 'offset' => $offset]);
 
     $content = [];
 
     foreach ($categories as $category) {
       $id = $category->getId();
       $action = <<< EOL
-							<a data-tooltip="cliquer pour modifier" class="ristorante-edit" href="/admin/categories/modifier/$id"></a>
-							<a data-tooltip="cliquer pour supprimer" class="ristorante-trash" href="/admin/categories/supprimer/$id"></a>
+							<a data-tooltip-left="cliquer pour modifier" class="ristorante-edit" href="/admin/categories/modifier/$id"></a>
+							<a data-tooltip-left="cliquer pour supprimer" class="ristorante-trash" href="/admin/categories/supprimer/$id"></a>
 			EOL;
 
       $content[] = [
@@ -34,6 +41,8 @@ class CategoryController extends Controller {
       'datas' => $content,
       'entity' => 'categories',
       'linkText' => 'Ajouter une catégorie',
+      'nbPages' => $nbPages,
+      'page' => $page,
     ]);
 
   }

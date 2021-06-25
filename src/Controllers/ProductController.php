@@ -9,15 +9,22 @@ use App\Router;
 
 class ProductController extends Controller {
   public function getProducts() {
-    $products = Product::find();
+    [
+      'limit' => $limit,
+      'offset' => $offset,
+      'page' => $page,
+      'nbPages' => $nbPages,
+    ] = Router::paginate(Product::class);
+
+    $products = Product::find(['limit' => $limit, 'offset' => $offset]);
 
     $content = [];
 
     foreach ($products as $product) {
       $id = $product->getId();
       $action = <<< EOL
-							<a data-tooltip="cliquer pour modifier" class="ristorante-edit" href="/admin/produits/modifier/$id"></a>
-							<a data-tooltip="cliquer pour supprimer" class="ristorante-trash" href="/admin/produits/supprimer/$id"></a>
+							<a data-tooltip-left="cliquer pour modifier" class="ristorante-edit" href="/admin/produits/modifier/$id"></a>
+							<a data-tooltip-left="cliquer pour supprimer" class="ristorante-trash" href="/admin/produits/supprimer/$id"></a>
 			EOL;
 
       $content[] = [
@@ -38,6 +45,8 @@ class ProductController extends Controller {
       'datas' => $content,
       'entity' => 'produits',
       'linkText' => 'Ajouter un produit',
+      'nbPages' => $nbPages,
+      'page' => $page,
     ]);
 
   }

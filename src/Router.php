@@ -8,6 +8,8 @@ use App\Controllers\ErrorController;
 class Router extends AltoRouter {
   private $path;
   private $router;
+  private $matchedRoute;
+  private $permission;
 
   /**
    *
@@ -63,6 +65,32 @@ class Router extends AltoRouter {
     return $this;
   }
 
+  public function checkPermission() {
+    $user = isset($_SESSION['user']) ? unserialize($_SESSION['user']) : null;
+    $adminRoute = str_contains($this->matchedRoute, 'admin');
+    $apiRoute = str_contains($this->matchedRoute, 'api');
+    $authRoute = in_array($this->matchedRoute, ['/inscription', '/connexion']);
+
+    $isAdmin = $user && $user->getIsAdmin();
+
+    if ($adminRoute && !$user) {
+      self::redirect('/', 401);
+    } elseif ($adminRoute && !$isAdmin) {
+      self::redirect('/', 403);
+    } elseif ($apiRoute && !$user) {
+      http_response_code(401);
+      echo json_encode([
+        'message' => "Vous n'êtes pas autorisé à acceder à cette ressource",
+        'code' => 401,
+      ]);
+      die();
+    } elseif ($authRoute && $user) {
+      self::redirectLoggedUserToHome();
+    } elseif (str_contains($this->matchedRoute, 'compte') && !$user) {
+      self::redirect('/', 401);
+    }
+  }
+
   /**
    *
    * Cette méthode permet de lancer le router et de vérifier les correspondances avec les routes prédéfinies
@@ -71,6 +99,7 @@ class Router extends AltoRouter {
   public function run() {
     // on vérifie les correspondance d'url et de route
     $match = $this->router->match();
+    $this->matchedRoute = $_SERVER['REQUEST_URI'];
 
     if (is_array($match)) {
       // si on a une correspondance on recupere la clé params et target de match
@@ -91,6 +120,8 @@ class Router extends AltoRouter {
 
       if (is_callable([$obj, $action])) {
         // on appelle la fonction demandée
+
+        $this->checkPermission();
 
         if (!empty($params)) {
           array_walk($params, [$obj, $action]);
@@ -115,6 +146,7 @@ class Router extends AltoRouter {
    */
   public static function redirectLoggedUserToHome() {
     if (isset($_SESSION['user'])) {
+      http_response_code(301);
       header("Location: /");
     }
   }
@@ -126,7 +158,33 @@ class Router extends AltoRouter {
    * @param string $path chemin de redirection
    *
    */
-  public static function redirect(string $path) {
+  public static function redirect(string $path, int $code = 301) {
+    http_response_code($code);
     header("Location: $path");
+    die();
+  }
+
+  public static function paginate(string $class, int $limit = 5) {
+    $page = $_GET['page'] ?? 1;
+
+    $page = (int) $page;
+
+    $numberOfItems = (int) $class::count();
+    $nbPages = (int) ceil($numberOfItems / $limit);
+
+    if ($page <= 0) {
+      $page = 1;
+    } elseif ($page > $nbPages) {
+      $page = $nbPages;
+    }
+
+    $offset = ($limit * $page) - $limit;
+
+    return [
+      'limit' => $limit,
+      'offset' => $offset,
+      'page' => $page,
+      'nbPages' => $nbPages,
+    ];
   }
 }

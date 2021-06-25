@@ -20,12 +20,16 @@ $router->get('/', 'MainController#getHome')
   ->get('/inscription', 'AuthController#getSignup')
   ->get('/signature', 'MainController#getSignature')
   ->get('/commander', 'OrderController#getOrderingPage')
-  ->get('/panier', 'CartController#getCartPage');
+  ->get('/mon-compte', 'UserController#getProfile')
+  ->get('/panier', 'CartController#getCartPage')
+  ->get('/panier/confirmation', 'CartController#getConfirmationPage');
 
 $router->post('/contact', 'MainController#postContact')
   ->post('/connexion', 'AuthController#postConnection')
   ->post('/menu/plats/[i:id]', 'CartController#postAddDishToCart')
-  ->post('/inscription', 'AuthController#postSignup');
+  ->post('/inscription', 'AuthController#postSignup')
+  ->post('/commander/confirmation', 'OrderController#getPaymentPage')
+  ->post('/commander/payer', 'OrderController#processPayment');
 
 $router->setPath('/api')
   ->post('/addCartItem', 'ApiController#postAddDishToCart')
