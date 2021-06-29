@@ -62,6 +62,16 @@
 		</header>
 		<main class="main__main">
 			<div id="notif"></div>
+			<div id="modal">
+				<form>
+					<h3 id="modal-title"></h3>
+					<div class="btn__container">
+						<button id="cancel-button" class="btn--danger" type="button">Annuler</button>
+						<button id="delete-button" class="btn--success" type="submit">Valider</button>
+					</div>
+				</form>
+			</div>
+
 			{% block main %}{% endblock %}
 		</main>
 		<footer class="main__footer">

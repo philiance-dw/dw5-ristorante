@@ -62,9 +62,9 @@ const showDeleteModal = (event) => {
   const modalElement = document.getElementById('modal');
   modalElement.classList.add('visible');
 
-  const dishNameDisplayElement = document.getElementById('dish-name');
+  const dishNameDisplayElement = document.getElementById('modal-title');
   const { dish_name, dish_id } = getItemInfos(event);
-  dishNameDisplayElement.textContent = dish_name;
+  dishNameDisplayElement.textContent = `Voulez vous vraiment supprimer "${dish_name}"?`;
 
   const modalFormElement = document.querySelector('#modal form');
   modalFormElement.setAttribute('data-dish-id', dish_id);

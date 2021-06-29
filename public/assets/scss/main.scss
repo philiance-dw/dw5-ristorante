@@ -312,3 +312,54 @@ p.error {
     animation: appear 400ms forwards ease;
   }
 }
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: all 250ms ease;
+  opacity: 0;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  & > * {
+    @include flex(center, space-between, column nowrap);
+    position: absolute;
+    padding: 4em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 40em;
+    max-width: 900px;
+    width: 80%;
+    background-color: #fff;
+    color: $secondary-color;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  > form {
+    min-height: 20em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+
+  .btn__container {
+    @include flex(center, center);
+    gap: 2em;
+
+    button {
+      border-radius: 10px;
+    }
+  }
+}

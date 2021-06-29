@@ -29,7 +29,8 @@ $router->post('/contact', 'MainController#postContact')
   ->post('/menu/plats/[i:id]', 'CartController#postAddDishToCart')
   ->post('/inscription', 'AuthController#postSignup')
   ->post('/commander/confirmation', 'OrderController#getPaymentPage')
-  ->post('/commander/payer', 'OrderController#processPayment');
+  ->post('/commander/payer', 'OrderController#processPayment')
+  ->post('/profil/supprimer', 'UserController#delete');
 
 $router->setPath('/api')
   ->post('/addCartItem', 'ApiController#postAddDishToCart')

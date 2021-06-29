@@ -2,9 +2,12 @@
 
 {% block head %}
 	<link rel="stylesheet" href="/public/assets/scss/profile/profile.css">
+	<script src="/public/assets/js/profile.js" defer></script>
 {% endblock %}
 
 {% block main %}
+
+
 	<h1>Mon compte</h1>
 
 	<section>
@@ -48,4 +51,6 @@
 			</table>
 		{% endfor %}
 	</section>
+	<button class="btn--danger" id="showModal">Supprimer le compte</button>
+
 {% endblock %}

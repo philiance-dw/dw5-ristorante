@@ -848,6 +848,84 @@ p.error {
           animation: appear 400ms forwards ease;
 }
 
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modal.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#modal > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: absolute;
+  padding: 4em;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  min-height: 40em;
+  max-width: 900px;
+  width: 80%;
+  background-color: #fff;
+  color: #302d2d;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+#modal > form {
+  min-height: 20em;
+}
+
+#modal h3 {
+  font-size: 2em;
+}
+
+#modal .btn__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2em;
+}
+
+#modal .btn__container button {
+  border-radius: 10px;
+}
+
 button,
 .btn {
   display: -webkit-box;
