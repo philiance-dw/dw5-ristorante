@@ -12,12 +12,14 @@ class OrderController extends Controller {
   public function getOrderingPage() {
     $categories = Category::find();
 
-    foreach ($categories as $index => $category) {
-      // on recupere les categories et les plats associés
-      $category->populateDishes();
+    if ($categories) {
+      foreach ($categories as $index => $category) {
+        // on recupere les categories et les plats associés
+        $category->populateDishes();
 
-      if (empty($category->getDishes())) {
-        unset($categories[$index]);
+        if (empty($category->getDishes())) {
+          unset($categories[$index]);
+        }
       }
     }
 
