@@ -44,6 +44,7 @@ Deny from all
 
 Options -Indexes
 
+
 # Deny to folders
 RewriteRule (^|/)conception(/|$) - [F]
 RewriteRule (^|/)database(/|$) - [F]
@@ -54,5 +55,5 @@ RewriteRule (^|/)views(/|$) - [F]
 
 # alto router routing
 # RewriteEngine on
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteRule . index.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]

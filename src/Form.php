@@ -76,9 +76,7 @@ class Form {
  *
  */
   public static function uploadFile(string $uploadDir, array &$errors = [], array $options = []) {
-    [
-      'allowedTypes' ?? null => $allowedTypes,
-    ] = $options;
+    $allowedTypes = $options['allowedTypes'] ?? null;
 
     $image = $_FILES['image'] ?? null;
 
@@ -101,7 +99,7 @@ class Form {
       }
     }
 
-    return $uploadFile;
+    return $uploadFile ?? null;
   }
 
   public function addField($params) {

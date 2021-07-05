@@ -108,21 +108,24 @@ class DishController extends Controller {
     ]);
   }
 
-  public function postEditDish(int $id) {
+public function postEditDish(int $id) {
     $errors = Form::validate($_POST);
 
     $uploadFile = Form::uploadFile('/public/uploads/dishes/', $errors);
 
     if (empty($errors)) {
-      $dish = new Dish();
-      $dish->setId($id)
-        ->setName($_POST['name'])
+      $dish = Dish::findOne(['id' => $id]);
+      $dish->setName($_POST['name'])
         ->setSize($_POST['size'])
         ->setDescription($_POST['description'])
-        ->setImageUrl($uploadFile)
         ->setPrice($_POST['price'])
-        ->setCategoryId($_POST['categoryId'])
-        ->save();
+        ->setCategoryId($_POST['categoryId']);
+
+      if ($uploadFile) {
+        $dish->setImageUrl($uploadFile);
+      }
+
+      $dish->save();
 
       Router::redirect('/admin/plats');
     }
@@ -137,6 +140,8 @@ class DishController extends Controller {
       'categories' => $categories,
     ]);
   }
+
+
 
   public function deleteDish(int $id) {
     Dish::deleteOne($id);

@@ -22,7 +22,7 @@ class Database {
     $pdo = null;
 
     try {
-      $pdo = new PDO("mysql:dbname=ristorante;host=localhost", $_ENV['DB_USER'], $_ENV['DB_PASS'], [
+      $pdo = new PDO("mysql:dbname=enyb3934_ristorantedw5;host=localhost", $_ENV['DB_USER'], $_ENV['DB_PASS'], [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
       ]);

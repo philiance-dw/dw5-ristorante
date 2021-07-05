@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Database;
 use App\Form;
 use App\Models\Category;
 use App\Router;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class MainController extends Controller {
   // renvoi la page d'accueil
@@ -43,9 +45,29 @@ class MainController extends Controller {
     // on valide la firmulaire en utilisant notre class Form
     $errors = Form::validate($_POST);
 
+    $pdo = Database::getConnection();
+
     if (empty($errors)) {
       // faire quelque chose avec les données ...
-      Router::redirect('/');
+
+      //Create an instance; passing `true` enables exceptions
+      $mail = new PHPMailer(true);
+
+      //Server settings
+      $mail->isSendMail();
+      //Recipients
+      $mail->setFrom($_POST['email'], "{$_POST['firstName']} {$_POST['lastName']}"); //Add a recipient
+      $mail->addAddress('contact@ristorante.david-nogueira.dev', 'David');
+
+      //Content
+      $mail->isHTML(true); //Set email format to HTML
+      $mail->Subject = 'Mail';
+      $mail->Body = $_POST['message'];
+      $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+      $mail->send();
+
+      Router::redirect('/contact');
       return;
     }
 

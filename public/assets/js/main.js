@@ -1,5 +1,5 @@
 "use strict";
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://ristorante.david-nogueira.dev/api';
 const showNotif = (message = '', classes = []) => {
     const notifElement = document.getElementById('notif');
     if (notifElement) {

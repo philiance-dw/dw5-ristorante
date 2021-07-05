@@ -11,7 +11,7 @@
 		<ul>
 			{% for category in categories %}
 				<ul>
-					<li class="category">{{category.getName()}}</li>
+					<li class="category">{{category.getName() | raw }}</li>
 					{% for dish in category.getDishes() %}
 						<ul>
 							<li class="dish__container">

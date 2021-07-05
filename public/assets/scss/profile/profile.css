@@ -104,4 +104,8 @@ section tfoot tr {
   background-color: #302d2d;
   color: #ffd000;
 }
+
+#showModal {
+  margin: 2rem auto 1rem;
+}
 /*# sourceMappingURL=profile.css.map */
